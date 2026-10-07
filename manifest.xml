@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+  <Id>d7cc10ae-314b-431b-a311-26af885c657a</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Graded Reader Studio</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Graded Vocab Reader" />
+  <Description DefaultValue="Đọc tiếng Anh phân tầng Comprehensible Input, phát âm chuẩn và tra từ vựng thông minh trong Word." />
+  <IconUrl DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/assets/icon-80.png" />
+  <SupportUrl DefaultValue="https://github.com/kimducanh27-cpu/graded-reader" />
+  <AppDomains>
+    <AppDomain>https://kimducanh27-cpu.github.io</AppDomain>
+    <AppDomain>https://fonts.googleapis.com</AppDomain>
+    <AppDomain>https://fonts.gstatic.com</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/index.html" />
+  </DefaultSettings>
+  <Permissions>ReadDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+          <FunctionFile resid="Taskpane.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="TabHome">
+              <Group id="CommandsGroup">
+                <Label resid="CommandsGroup.Label"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16"/>
+                  <bt:Image size="32" resid="Icon.32x32"/>
+                  <bt:Image size="80" resid="Icon.80x80"/>
+                </Icon>
+                <Control xsi:type="Button" id="TaskpaneButton">
+                  <Label resid="TaskpaneButton.Label"/>
+                  <Supertip>
+                    <Title resid="TaskpaneButton.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16"/>
+                    <bt:Image size="32" resid="Icon.32x32"/>
+                    <bt:Image size="80" resid="Icon.80x80"/>
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url"/>
+                  </Action>
+                </Control>
+              </Group>
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://github.com/kimducanh27-cpu/graded-reader"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://kimducanh27-cpu.github.io/graded-reader/index.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="GetStarted.Title" DefaultValue="Graded Vocab Reader"/>
+        <bt:String id="CommandsGroup.Label" DefaultValue="Graded Reader"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Bật Tra Từ &amp; Đọc Bài"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Khởi động Graded Reader và thanh tra từ tự động trong Microsoft Word."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Mở bảng tra cứu từ vựng và bài đọc tiếng Anh phân tầng có phát âm chuẩn."/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>
