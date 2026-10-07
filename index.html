@@ -1119,7 +1119,7 @@
             }
 
             .app-container {
-                padding: 10px 10px 80px 10px;
+                padding: 10px 10px 220px 10px;
             }
 
             /* Compact Hero */
@@ -1837,42 +1837,51 @@
 
         // Quick Lookup for Selection & Double-click
         function handleSelectionLookup(e) {
-            if (e.target.closest('#quickLookupPopup') || e.target.closest('#sidePanel') || e.target.closest('.controls-toolbar')) {
+            if (e.target && (e.target.closest('#quickLookupPopup') || e.target.closest('#sidePanel') || e.target.closest('.controls-toolbar'))) {
                 return;
             }
 
             const selection = window.getSelection();
-            const rawText = selection.toString().trim();
-            if (!rawText || rawText.length < 2 || rawText.length > 40) {
+            const rawText = selection ? selection.toString().trim() : '';
+            if (!rawText) {
+                return;
+            }
+            if (rawText.length < 2 || rawText.length > 250) {
+                hideQuickLookup();
                 return;
             }
 
-            const cleanWord = rawText.replace(/^[.,;:!?"'()\[\]\s]+|[.,;:!?"'()\[\]\s]+$/g, '').toLowerCase();
+            const displayWord = rawText.replace(/^[.,;:!?"'()\[\]\s]+|[.,;:!?"'()\[\]\s]+$/g, '');
+            const cleanWord = displayWord.toLowerCase();
             if (!cleanWord || cleanWord.length < 2) {
                 hideQuickLookup();
                 return;
             }
 
-            const isExistingToken = e.target.closest('.vocab-token');
+            const isExistingToken = e.target && e.target.closest('.vocab-token');
             if (isExistingToken) {
                 hideQuickLookup();
                 return;
             }
 
-            currentSelectionWord = cleanWord;
+            currentSelectionWord = displayWord;
             try {
                 const range = selection.getRangeAt(0);
                 const rect = range.getBoundingClientRect();
-                showQuickLookup(cleanWord, rawText, rect);
+                showQuickLookup(cleanWord, displayWord, rect);
             } catch (err) {
                 console.error(err);
             }
         }
 
+        let touchSelectionTimer = null;
         document.addEventListener('mouseup', handleSelectionLookup);
-        document.addEventListener('touchend', handleSelectionLookup);
+        document.addEventListener('touchend', (e) => {
+            if (touchSelectionTimer) clearTimeout(touchSelectionTimer);
+            touchSelectionTimer = setTimeout(() => handleSelectionLookup(e), 80);
+        });
 
-        async function showQuickLookup(cleanWord, originalText, rect) {
+        async function showQuickLookup(cleanWord, displayWord, rect) {
             const popup = document.getElementById('quickLookupPopup');
             const wordEl = document.getElementById('qpWord');
             const posEl = document.getElementById('qpPos');
@@ -1881,18 +1890,24 @@
             const noteEl = document.getElementById('qpContextNote');
             const webLinkEl = document.getElementById('qpWebLink');
 
-            wordEl.textContent = cleanWord;
+            wordEl.textContent = displayWord;
+            if (displayWord.length > 50) {
+                wordEl.style.fontSize = '0.92rem';
+            } else {
+                wordEl.style.fontSize = '1.08rem';
+            }
+
             ipaEl.textContent = '';
             if (posEl) posEl.style.display = 'none';
             if (noteEl) noteEl.style.display = 'none';
             
             if (webLinkEl) {
-                webLinkEl.href = `https://translate.google.com/?sl=en&tl=vi&text=${encodeURIComponent(cleanWord)}&op=translate`;
+                webLinkEl.href = `https://translate.google.com/?sl=en&tl=vi&text=${encodeURIComponent(displayWord)}&op=translate`;
             }
 
             let meaning = "";
             let ipa = "";
-            let pos = "";
+            let pos = cleanWord.includes(' ') ? (cleanWord.length > 40 ? 'câu' : 'cụm từ') : "";
             let usageNote = "";
             let contextSentenceVi = "";
 
@@ -1916,13 +1931,24 @@
 
             // 2. Tra cứu ngữ cảnh song ngữ offline từ SENTENCE_PAIRS
             if (typeof SENTENCE_PAIRS !== 'undefined' && Array.isArray(SENTENCE_PAIRS)) {
-                const matchedPair = SENTENCE_PAIRS.find(p => p.en && p.en.toLowerCase().includes(cleanWord));
+                const matchedPair = SENTENCE_PAIRS.find(p => {
+                    if (!p.en) return false;
+                    const pEn = p.en.toLowerCase();
+                    return pEn.includes(cleanWord) || cleanWord.includes(pEn);
+                });
                 if (matchedPair) {
                     contextSentenceVi = matchedPair.vi;
-                    if (!meaning) {
+                    if (cleanWord.includes(' ')) {
                         meaning = matchedPair.vi;
+                        if (!pos) pos = cleanWord.length > 40 ? 'câu' : 'cụm từ';
                     }
                 }
+            }
+
+            // Xử lý trường hợp tên riêng hoặc từ viết hoa trùng nghĩa
+            if (meaning && meaning.toLowerCase() === cleanWord && !cleanWord.includes(' ') && displayWord[0] === displayWord[0].toUpperCase()) {
+                meaning = 'Tên riêng (Proper name)';
+                if (!pos) pos = 'tên riêng';
             }
 
             // Render UI state helper
@@ -1934,7 +1960,7 @@
                 }
                 if (meaningEl) meaningEl.textContent = curMeaning;
                 if (noteEl) {
-                    if (curContext) {
+                    if (curContext && curContext !== curMeaning) {
                         noteEl.innerHTML = `📖 Trong câu: <em>"${curContext}"</em>`;
                         noteEl.style.display = 'block';
                     } else if (curNote) {
@@ -1960,20 +1986,24 @@
             positionPopup(rect, popup);
 
             // 3. Tra cứu trực tuyến Google Translate API để có nghĩa ngắn gọn chính xác nhất
-            if (!PASSAGE_GLOSSARY || !PASSAGE_GLOSSARY[cleanWord]) {
+            if (cleanWord.includes(' ') || !PASSAGE_GLOSSARY || !PASSAGE_GLOSSARY[cleanWord]) {
                 try {
                     const controller = new AbortController();
                     const timeoutId = setTimeout(() => controller.abort(), 3500);
 
-                    const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(cleanWord)}`, {
+                    const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(displayWord)}`, {
                         signal: controller.signal
                     });
                     clearTimeout(timeoutId);
 
                     const resJson = await res.json();
                     if (resJson && resJson[0]) {
-                        const onlineMeaning = resJson[0].map(item => item[0]).join('').trim();
+                        let onlineMeaning = resJson[0].map(item => item[0]).join('').trim();
                         if (onlineMeaning) {
+                            if (onlineMeaning.toLowerCase() === cleanWord && !cleanWord.includes(' ') && displayWord[0] === displayWord[0].toUpperCase()) {
+                                onlineMeaning = 'Tên riêng (Proper name)';
+                                if (!pos) pos = 'tên riêng';
+                            }
                             updatePopupUI(onlineMeaning, ipa, pos, usageNote, contextSentenceVi);
                             currentSelectionMeaning = onlineMeaning;
                             positionPopup(rect, popup);
@@ -2002,12 +2032,19 @@
                     updatePopupUI(meaning, ipa, pos, usageNote, contextSentenceVi);
                     currentSelectionMeaning = meaning;
                 } else {
-                    meaningEl.innerHTML = '<em>Chưa có nghĩa offline cho cụm này.</em>';
-                    if (noteEl) {
-                        noteEl.innerHTML = '<span style="color:#38bdf8;">Bấm nút "Google Dịch" để mở tra cứu trực tuyến.</span>';
-                        noteEl.style.display = 'block';
+                    if (!cleanWord.includes(' ') && displayWord[0] === displayWord[0].toUpperCase()) {
+                        meaning = 'Tên riêng (Proper name)';
+                        if (!pos) pos = 'tên riêng';
+                        updatePopupUI(meaning, ipa, pos, usageNote, contextSentenceVi);
+                        currentSelectionMeaning = meaning;
+                    } else {
+                        meaningEl.innerHTML = '<em>Chưa có nghĩa offline cho cụm này.</em>';
+                        if (noteEl) {
+                            noteEl.innerHTML = '<span style="color:#38bdf8;">Bấm nút "Dịch ↗" để mở tra cứu trực tuyến.</span>';
+                            noteEl.style.display = 'block';
+                        }
+                        currentSelectionMeaning = displayWord;
                     }
-                    currentSelectionMeaning = cleanWord;
                 }
             }
             positionPopup(rect, popup);
@@ -2051,7 +2088,7 @@
             if (!currentSelectionWord) return;
             const word = currentSelectionWord;
 
-            let existing = VOCAB_DATA.find(w => w.word.toLowerCase() === word);
+            let existing = VOCAB_DATA.find(w => w.word.toLowerCase() === word.toLowerCase());
             if (!existing) {
                 existing = {
                     word: word,
@@ -2078,7 +2115,8 @@
 
         function highlightSavedWordInDocument(word) {
             const paras = document.querySelectorAll('.reading-body .reading-para');
-            const regex = new RegExp('\\b(' + word + ')\\b', 'gi');
+            const escaped = word.trim().split('').map(c => ('-[]/{}()*+?.\\^$|'.indexOf(c) !== -1 ? '\\' + c : c)).join('');
+            const regex = new RegExp(escaped, 'gi');
 
             paras.forEach(para => {
                 const tempDiv = document.createElement('div');
@@ -2089,7 +2127,7 @@
                         const val = node.nodeValue;
                         if (regex.test(val)) {
                             const span = document.createElement('span');
-                            span.innerHTML = val.replace(regex, '<span class="vocab-token user-saved" onclick="openSidePanel(\'' + word.toLowerCase() + '\')">$1<span class="token-sound-icon">🔊</span></span>');
+                            span.innerHTML = val.replace(regex, '<span class="vocab-token user-saved" onclick="openSidePanel(\'' + word.toLowerCase().replace(/'/g, "\\'") + '\')">$1<span class="token-sound-icon">🔊</span></span>');
                             node.parentNode.replaceChild(span, node);
                         }
                     } else if (node.nodeType === 1 && !node.classList.contains('vocab-token')) {
