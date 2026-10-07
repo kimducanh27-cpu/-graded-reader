@@ -550,74 +550,77 @@
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             color: #f8fafc;
-            border-radius: var(--radius-lg);
-            padding: 16px 18px;
+            border-radius: 13px;
+            padding: 11px 13px;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.55),
+            box-shadow: 0 16px 36px -6px rgba(0, 0, 0, 0.55),
                         0 0 0 1px rgba(255, 255, 255, 0.08),
-                        0 8px 20px -4px rgba(37, 99, 235, 0.2);
-            min-width: 300px;
-            max-width: 380px;
-            font-size: 0.9rem;
+                        0 6px 16px -4px rgba(37, 99, 235, 0.2);
+            min-width: 250px;
+            max-width: 310px;
+            font-size: 0.85rem;
             transition: opacity 0.15s ease, transform 0.15s ease;
+            box-sizing: border-box;
         }
 
         .quick-popup-handle {
             display: none;
-            width: 36px;
-            height: 4px;
+            width: 32px;
+            height: 3px;
             background: rgba(255, 255, 255, 0.25);
             border-radius: 9999px;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 10px auto;
         }
 
         .quick-popup-header {
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
-            gap: 12px;
+            gap: 8px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 12px;
-            margin-bottom: 12px;
+            padding-bottom: 8px;
+            margin-bottom: 8px;
         }
 
         .quick-popup-title-group {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 2px;
             min-width: 0;
+            flex: 1;
         }
 
         .quick-popup-word-row {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .quick-popup-word {
             font-weight: 800;
-            font-size: 1.28rem;
+            font-size: 1.12rem;
             color: #38bdf8;
             letter-spacing: -0.02em;
             line-height: 1.2;
+            word-break: break-word;
         }
 
         .quick-popup-pos {
             background: rgba(59, 130, 246, 0.18);
             color: #93c5fd;
             border: 1px solid rgba(147, 197, 253, 0.3);
-            font-size: 0.68rem;
+            font-size: 0.62rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
-            padding: 1px 7px;
+            letter-spacing: 0.05em;
+            padding: 1px 5px;
             border-radius: 4px;
             display: inline-block;
         }
 
         .quick-popup-ipa {
-            font-size: 0.84rem;
+            font-size: 0.78rem;
             color: #94a3b8;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             font-weight: 500;
@@ -626,7 +629,7 @@
         .quick-popup-header-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-shrink: 0;
         }
 
@@ -634,14 +637,14 @@
             background: rgba(37, 99, 235, 0.2);
             color: #93c5fd;
             border: 1px solid rgba(96, 165, 250, 0.35);
-            border-radius: 20px;
-            padding: 5px 12px;
-            font-size: 0.8rem;
+            border-radius: 16px;
+            padding: 3px 8px;
+            font-size: 0.74rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.15s ease;
         }
 
@@ -650,7 +653,6 @@
             color: #ffffff;
             border-color: #3b82f6;
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
         }
 
         .quick-popup-btn-close {
@@ -658,12 +660,12 @@
             color: #94a3b8;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.82rem;
+            font-size: 0.74rem;
             cursor: pointer;
             transition: all 0.15s ease;
             line-height: 1;
@@ -678,63 +680,66 @@
         }
 
         .quick-popup-body {
-            margin-bottom: 14px;
+            margin-bottom: 9px;
         }
 
         .quick-popup-meaning {
             color: #f8fafc;
-            font-size: 1.02rem;
+            font-size: 0.94rem;
             font-weight: 600;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .quick-popup-context {
-            font-size: 0.82rem;
+            font-size: 0.76rem;
             color: #94a3b8;
-            margin-top: 6px;
-            line-height: 1.45;
+            margin-top: 5px;
+            line-height: 1.35;
             background: rgba(255, 255, 255, 0.04);
             border-left: 2px solid #38bdf8;
-            padding: 6px 10px;
-            border-radius: 0 6px 6px 0;
+            padding: 5px 8px;
+            border-radius: 0 5px 5px 0;
         }
 
         .quick-popup-footer {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* Amber/Gold Highlighter Save Button - WCAG AAA Compliant (Contrast 8.2:1) */
         .quick-popup-btn-save {
             flex: 1;
+            min-width: 0;
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             color: #78350f;
             border: 1px solid #fcd34d;
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: 0.86rem;
-            font-weight: 800;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 0.78rem;
+            font-weight: 750;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+            gap: 4px;
+            box-shadow: 0 1px 4px rgba(245, 158, 11, 0.2);
             transition: all 0.15s ease;
             white-space: nowrap;
-            min-height: 40px;
+            min-height: 32px;
+            box-sizing: border-box;
         }
 
         .quick-popup-btn-save:hover {
             background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
             color: #451a03;
             transform: translateY(-1px);
-            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
         }
 
         .save-star-icon {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
         }
 
         /* Secondary Google Translate Action Chip */
@@ -742,17 +747,19 @@
             background: rgba(255, 255, 255, 0.06);
             color: #38bdf8;
             border: 1px solid rgba(56, 189, 248, 0.25);
-            border-radius: 10px;
-            padding: 10px 12px;
-            font-size: 0.8rem;
+            border-radius: 8px;
+            padding: 6px 9px;
+            font-size: 0.75rem;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             transition: all 0.15s ease;
             white-space: nowrap;
-            min-height: 40px;
+            min-height: 32px;
+            flex-shrink: 0;
+            box-sizing: border-box;
         }
 
         .quick-popup-btn-ext:hover {
@@ -1340,17 +1347,17 @@
             .quick-lookup-popup {
                 position: fixed !important;
                 top: auto !important;
-                bottom: 18px !important;
+                bottom: 16px !important;
                 left: 12px !important;
                 right: 12px !important;
                 min-width: 0 !important;
-                max-width: 460px !important;
+                max-width: 380px !important;
                 width: auto !important;
                 margin: 0 auto !important;
                 z-index: 10000 !important;
-                border-radius: 20px !important;
-                padding: 12px 16px 16px 16px !important;
-                box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
+                border-radius: 16px !important;
+                padding: 10px 13px 13px 13px !important;
+                box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
                 animation: popupSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
             }
 
@@ -1359,12 +1366,13 @@
             }
 
             .quick-popup-btn-save {
-                min-height: 44px !important;
-                font-size: 0.88rem !important;
+                min-height: 38px !important;
+                font-size: 0.82rem !important;
             }
 
             .quick-popup-btn-ext {
-                min-height: 44px !important;
+                min-height: 38px !important;
+                font-size: 0.76rem !important;
             }
 
             @keyframes popupSlideUp {
@@ -1593,13 +1601,13 @@
             <div id="qpContextNote" class="quick-popup-context" style="display:none;"></div>
         </div>
         <div class="quick-popup-footer">
-            <button class="quick-popup-btn-save" onclick="saveWordToPassage()">
+            <button class="quick-popup-btn-save" onclick="saveWordToPassage()" title="Đánh dấu vàng và lưu vào bài đọc">
                 <span class="save-star-icon">⭐</span>
-                <span>Đánh Dấu Vàng & Lưu Vào Bài</span>
+                <span>Đánh Dấu & Lưu</span>
             </button>
-            <a id="qpWebLink" href="#" target="_blank" class="quick-popup-btn-ext" title="Mở rộng trên Google Dịch">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                <span>Google Dịch</span>
+            <a id="qpWebLink" href="#" target="_blank" class="quick-popup-btn-ext" title="Tra cứu trên Google Dịch">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Dịch ↗</span>
             </a>
         </div>
     </div>
