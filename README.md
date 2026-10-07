@@ -6,7 +6,7 @@ Hệ thống đọc tiếng Anh phân tầng thông minh theo nguyên lý **Comp
 
 ## 🌐 1. Học trực tiếp trên Điện thoại & Trình duyệt (GitHub Pages)
 
-👉 **Đường dẫn học trực tiếp:** [https://kimducanh27-cpu.github.io/graded-reader/](https://kimducanh27-cpu.github.io/graded-reader/)
+👉 **Đường dẫn học trực tiếp:** [https://kimducanh27-cpu.github.io/-graded-reader/](https://kimducanh27-cpu.github.io/-graded-reader/)
 
 - **Trên điện thoại:** Mở link trên bằng Safari (iOS) hoặc Chrome (Android). Có thể chọn **"Thêm vào Màn hình chính" (Add to Home Screen)** để dùng như ứng dụng app học tiếng Anh riêng biệt.
 - **Tính năng trên mobile:**
