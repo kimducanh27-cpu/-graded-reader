@@ -6,6 +6,7 @@
     <title>Interactive Reader - Coffee Journey and Morning Routines</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -987,8 +988,309 @@
             background: var(--primary-light);
             border-color: #c7d2fe;
         }
+
+        .lvl-label-full { display: inline; }
+        .lvl-label-short { display: none; }
+
+        .toolbar-group-voice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .toolbar-group-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .speed-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+    
+        .lvl-label-full { display: inline; }
+        .lvl-label-short { display: none; }
+
+        .toolbar-group-voice {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .toolbar-group-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .speed-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+
+        /* ========================================================
+           Mobile Responsive Optimizations (Google Labs DESIGN.md)
+           ======================================================== */
+        @media (max-width: 640px) {
+            body {
+                overflow-x: hidden;
+            }
+
+            .app-container {
+                padding: 10px 10px 80px 10px;
+            }
+
+            /* Compact Hero */
+            header.hero {
+                padding: 22px 14px 18px 14px;
+                border-radius: var(--radius-lg);
+                margin-bottom: 14px;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+                letter-spacing: 0.02em;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            header.hero h1 {
+                font-size: 1.45rem;
+                line-height: 1.25;
+                margin-bottom: 6px;
+                letter-spacing: -0.01em;
+            }
+
+            .hero-sub {
+                font-size: 0.84rem;
+                line-height: 1.4;
+                margin-bottom: 14px;
+            }
+
+            /* Single-line Level Navigation Capsule */
+            .level-nav {
+                display: flex;
+                width: 100%;
+                gap: 4px;
+                padding: 4px;
+                justify-content: space-between;
+            }
+
+            .lvl-label-full { display: none !important; }
+            .lvl-label-short { display: inline !important; font-weight: 800; }
+
+            .nav-pill {
+                flex: 1;
+                padding: 7px 4px;
+                font-size: 0.78rem;
+                justify-content: center;
+                white-space: nowrap;
+                gap: 4px;
+            }
+
+            /* Ultra-sleek Sticky Toolbar on Mobile */
+            .controls-toolbar {
+                position: sticky;
+                top: 6px;
+                padding: 8px 10px;
+                border-radius: var(--radius-lg);
+                margin-bottom: 14px;
+                gap: 8px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .toolbar-group-voice {
+                width: 100%;
+                min-width: 0;
+            }
+
+            .toolbar-label-voice {
+                display: none;
+            }
+
+            .select-wrapper {
+                width: 100%;
+            }
+
+            .select-input {
+                width: 100%;
+                padding: 7px 10px;
+                font-size: 0.8rem;
+            }
+
+            .toolbar-group-actions {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+            }
+
+            .toolbar-label-speed {
+                display: none;
+            }
+
+            .speed-wrapper {
+                flex: 1;
+            }
+
+            .speed-segmented {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+            }
+
+            .btn-speed {
+                flex: 1;
+                padding: 5px 4px;
+                text-align: center;
+                font-size: 0.76rem;
+            }
+
+            .btn-stop-audio {
+                padding: 5px 10px;
+                font-size: 0.76rem;
+                white-space: nowrap;
+            }
+
+            /* Compact Guide Banner */
+            .guide-banner {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+                gap: 8px;
+                border-radius: var(--radius-md);
+                margin-bottom: 14px;
+            }
+
+            /* Level Section Card with Maximize Reading Width */
+            .level-section {
+                padding: 16px 14px;
+                border-radius: var(--radius-lg);
+                margin-bottom: 20px;
+            }
+
+            .level-header {
+                padding-bottom: 12px;
+                margin-bottom: 14px;
+                gap: 8px;
+            }
+
+            .level-header h2 {
+                font-size: 1.15rem;
+            }
+
+            .cefr-badge {
+                font-size: 0.75rem;
+                padding: 5px 12px;
+            }
+
+            .btn-audio-play {
+                padding: 6px 12px;
+                font-size: 0.78rem;
+            }
+
+            .image-card {
+                margin-bottom: 14px;
+                border-radius: var(--radius-md);
+            }
+
+            .image-card img {
+                max-height: 220px;
+            }
+
+            .image-caption-overlay {
+                padding: 16px 12px 8px 12px;
+                font-size: 0.78rem;
+            }
+
+            /* Natural mobile typography reading size (Newsreader) */
+            .reading-body {
+                font-size: 1.08rem;
+                line-height: 1.8;
+                margin-bottom: 18px;
+            }
+
+            .reading-para {
+                margin-bottom: 14px;
+            }
+
+            .vocab-token {
+                padding: 1px 6px;
+                margin: 0 1px;
+                font-size: 0.96em;
+            }
+
+            /* Mobile Bottom Sheet Drawer */
+            .side-panel {
+                top: auto !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 84vh !important;
+                max-height: 84vh !important;
+                border-radius: 22px 22px 0 0 !important;
+                transform: translateY(100%) !important;
+                transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+                box-shadow: 0 -12px 35px rgba(15, 23, 42, 0.35) !important;
+            }
+
+            .side-panel.active,
+            .side-panel.open {
+                transform: translateY(0) !important;
+            }
+
+            .side-panel-header {
+                padding: 14px 18px;
+                position: relative;
+            }
+
+            .side-panel-header::before {
+                content: '';
+                position: absolute;
+                top: 8px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 36px;
+                height: 4px;
+                background: #cbd5e1;
+                border-radius: 2px;
+            }
+
+            .side-panel-body {
+                padding: 16px 18px 24px 18px;
+            }
+
+            .word-title {
+                font-size: 1.8rem;
+            }
+
+            /* Bounded Quick Lookup Popover */
+            .quick-lookup-popup {
+                min-width: 0 !important;
+                max-width: calc(100vw - 24px) !important;
+                left: 12px !important;
+                right: 12px !important;
+                margin: 0 auto;
+            }
+        }
+
     </style>
-<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="app-container">
@@ -1000,13 +1302,12 @@
             <h1>COFFEE JOURNEY AND MORNING ROUTINES</h1>
             <p class="hero-sub">Hành trình hương vị cà phê và nhịp sống buổi sáng</p>
             <div class="level-nav">
-                <button class="nav-pill" onclick="scrollToLevel('A1')"><span>🟢</span> A1: Sơ cấp</button>
-                <button class="nav-pill" onclick="scrollToLevel('A2')"><span>🔵</span> A2: Tiền trung cấp</button>
-                <button class="nav-pill" onclick="scrollToLevel('B1')"><span>🟣</span> B1: Trung cấp</button>
+                <button class="nav-pill" onclick="scrollToLevel('A1')"><span>🟢</span> <span class="lvl-label-full">A1: Sơ cấp</span><span class="lvl-label-short">A1</span></button>
+                <button class="nav-pill" onclick="scrollToLevel('A2')"><span>🔵</span> <span class="lvl-label-full">A2: Tiền trung cấp</span><span class="lvl-label-short">A2</span></button>
+                <button class="nav-pill" onclick="scrollToLevel('B1')"><span>🟣</span> <span class="lvl-label-full">B1: Trung cấp</span><span class="lvl-label-short">B1</span></button>
             </div>
         </header>
 
-        
         <!-- Word Connected Notice Banner (Auto-shown when opened inside Microsoft Word) -->
         <div id="wordConnectedBanner" style="display:none;align-items:center;gap:10px;background:linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);border:1px solid #93c5fd;border-radius:12px;padding:12px 18px;margin-bottom:20px;box-shadow:0 2px 8px rgba(37,99,235,0.08);">
             <span style="font-size:1.4rem;">📄</span>
@@ -1017,25 +1318,27 @@
         </div>
 
         <div class="controls-toolbar">
-            <div class="toolbar-group">
-                <span class="toolbar-label">🌐 Giọng đọc:</span>
+            <div class="toolbar-group-voice">
+                <span class="toolbar-label toolbar-label-voice">🌐 Giọng:</span>
                 <div class="select-wrapper">
                     <select id="voiceSelect" class="select-input"></select>
                 </div>
             </div>
 
-            <div class="toolbar-group">
-                <span class="toolbar-label">⚡ Tốc độ:</span>
-                <div class="speed-segmented">
-                    <button class="btn-speed active" onclick="setSpeed(0.8, this)">0.8x</button>
-                    <button class="btn-speed" onclick="setSpeed(1.0, this)">1.0x</button>
-                    <button class="btn-speed" onclick="setSpeed(1.2, this)">1.2x</button>
+            <div class="toolbar-group-actions">
+                <div class="speed-wrapper">
+                    <span class="toolbar-label toolbar-label-speed">⚡ Tốc độ:</span>
+                    <div class="speed-segmented">
+                        <button class="btn-speed active" onclick="setSpeed(0.8, this)">0.8x</button>
+                        <button class="btn-speed" onclick="setSpeed(1.0, this)">1.0x</button>
+                        <button class="btn-speed" onclick="setSpeed(1.2, this)">1.2x</button>
+                    </div>
                 </div>
-            </div>
 
-            <button id="btnStop" class="btn-stop-audio" onclick="stopAudio()">
-                <span class="stop-dot"></span> Dừng đọc
-            </button>
+                <button id="btnStop" class="btn-stop-audio" onclick="stopAudio()">
+                    <span class="stop-dot"></span> Dừng đọc
+                </button>
+            </div>
         </div>
 
         <div class="guide-banner">
@@ -1320,14 +1623,13 @@
         async function openSidePanel(wordKey) {
             const cleanKey = wordKey.trim().toLowerCase();
             let wordObj = VOCAB_DATA.find(w => w.word.toLowerCase() === cleanKey);
-            
+
             if (!wordObj) {
-                // Check glossary
                 let meaning = '';
                 let ipa = '';
                 let pos = 'Từ tra cứu';
                 let usage = 'Tra cứu trực tiếp từ văn bản.';
-                
+
                 if (typeof PASSAGE_GLOSSARY !== 'undefined' && PASSAGE_GLOSSARY[cleanKey]) {
                     const g = PASSAGE_GLOSSARY[cleanKey];
                     meaning = g.meaning_vn || '';
@@ -1335,7 +1637,6 @@
                     pos = g.pos || pos;
                     usage = g.usage_note || usage;
                 } else {
-                    // Try online translation
                     try {
                         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(cleanKey)}`);
                         const json = await res.json();
@@ -1346,7 +1647,7 @@
                         meaning = 'Bấm liên kết bên dưới để xem từ điển chi tiết.';
                     }
                 }
-                
+
                 wordObj = {
                     word: wordKey,
                     ipa: ipa,
@@ -1698,7 +1999,6 @@
                     const banner = document.getElementById('wordConnectedBanner');
                     if (banner) banner.style.display = 'flex';
 
-                    // Listen for selection changes in Microsoft Word document
                     try {
                         Office.context.document.addHandlerAsync(
                             Office.EventType.DocumentSelectionChanged,
@@ -1721,7 +2021,7 @@
                         const rawText = asyncResult.value;
                         if (rawText && typeof rawText === 'string') {
                             const clean = rawText.trim().replace(/^[.,;:!?"'()\[\]\s]+|[.,;:!?"'()\[\]\s]+$/g, '');
-                            if (clean.length >= 2 && clean.length <= 40 && !clean.includes('\n') && clean !== lastWordSelected) {
+                            if (clean.length >= 2 && clean.length <= 40 && clean.indexOf(String.fromCharCode(10)) === -1 && clean !== lastWordSelected) {
                                 lastWordSelected = clean;
                                 openSidePanel(clean);
                                 speakText(clean);
