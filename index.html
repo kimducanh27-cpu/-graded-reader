@@ -590,110 +590,220 @@
         .quick-lookup-popup {
             position: absolute;
             display: none;
-            z-index: 995;
+            z-index: 10000;
             background: rgba(15, 23, 42, 0.96);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
             color: #f8fafc;
             border-radius: var(--radius-lg);
             padding: 16px 18px;
-            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.12);
-            min-width: 280px;
-            max-width: 350px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 45px -8px rgba(0, 0, 0, 0.55),
+                        0 0 0 1px rgba(255, 255, 255, 0.08),
+                        0 8px 20px -4px rgba(37, 99, 235, 0.2);
+            min-width: 300px;
+            max-width: 380px;
             font-size: 0.9rem;
-            transition: opacity 0.15s ease;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .quick-popup-handle {
+            display: none;
+            width: 36px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 9999px;
+            margin: 0 auto 12px auto;
         }
 
         .quick-popup-header {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            gap: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 10px;
-            margin-bottom: 10px;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+        }
+
+        .quick-popup-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .quick-popup-word-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .quick-popup-word {
             font-weight: 800;
-            font-size: 1.2rem;
+            font-size: 1.28rem;
             color: #38bdf8;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .quick-popup-pos {
+            background: rgba(59, 130, 246, 0.18);
+            color: #93c5fd;
+            border: 1px solid rgba(147, 197, 253, 0.3);
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 1px 7px;
+            border-radius: 4px;
+            display: inline-block;
         }
 
         .quick-popup-ipa {
-            font-size: 0.82rem;
+            font-size: 0.84rem;
             color: #94a3b8;
-            font-style: italic;
-            margin-left: 6px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-weight: 500;
+        }
+
+        .quick-popup-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .quick-popup-btn-audio {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
+            background: rgba(37, 99, 235, 0.2);
+            color: #93c5fd;
+            border: 1px solid rgba(96, 165, 250, 0.35);
+            border-radius: 20px;
             padding: 5px 12px;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
-            transition: transform 0.15s ease;
-        }
-
-        .quick-popup-btn-audio:hover {
-            transform: scale(1.04);
-        }
-
-        .quick-popup-meaning {
-            color: #f1f5f9;
-            line-height: 1.5;
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .quick-popup-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .quick-popup-btn-save {
-            flex: 1;
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 14px;
-            font-size: 0.84rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
+            gap: 5px;
             transition: all 0.15s ease;
         }
 
-        .quick-popup-btn-save:hover {
-            filter: brightness(1.08);
+        .quick-popup-btn-audio:hover {
+            background: #2563eb;
+            color: #ffffff;
+            border-color: #3b82f6;
             transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
         }
 
         .quick-popup-btn-close {
-            background: rgba(255, 255, 255, 0.1);
-            color: #cbd5e1;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 12px;
-            font-size: 0.84rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.82rem;
             cursor: pointer;
-            transition: background 0.15s ease;
+            transition: all 0.15s ease;
+            line-height: 1;
+            padding: 0;
         }
 
         .quick-popup-btn-close:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.4);
+            transform: rotate(90deg);
+        }
+
+        .quick-popup-body {
+            margin-bottom: 14px;
+        }
+
+        .quick-popup-meaning {
+            color: #f8fafc;
+            font-size: 1.02rem;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .quick-popup-context {
+            font-size: 0.82rem;
+            color: #94a3b8;
+            margin-top: 6px;
+            line-height: 1.45;
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 2px solid #38bdf8;
+            padding: 6px 10px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .quick-popup-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Amber/Gold Highlighter Save Button - WCAG AAA Compliant (Contrast 8.2:1) */
+        .quick-popup-btn-save {
+            flex: 1;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            color: #78350f;
+            border: 1px solid #fcd34d;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.25);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            min-height: 40px;
+        }
+
+        .quick-popup-btn-save:hover {
+            background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%);
+            color: #451a03;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35);
+        }
+
+        .save-star-icon {
+            font-size: 0.95rem;
+        }
+
+        /* Secondary Google Translate Action Chip */
+        .quick-popup-btn-ext {
+            background: rgba(255, 255, 255, 0.06);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 10px;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.15s ease;
+            white-space: nowrap;
+            min-height: 40px;
+        }
+
+        .quick-popup-btn-ext:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: #7dd3fc;
+            border-color: rgba(56, 189, 248, 0.5);
         }
 
         /* Side Panel Drawer */
@@ -1280,7 +1390,7 @@
                 font-size: 1.8rem;
             }
 
-            /* Bounded Quick Lookup Popover */
+            /* Bounded Quick Lookup Popover (Mobile Bottom Floating Card) */
             .quick-lookup-popup {
                 position: fixed !important;
                 top: auto !important;
@@ -1288,13 +1398,27 @@
                 left: 12px !important;
                 right: 12px !important;
                 min-width: 0 !important;
-                max-width: calc(100vw - 24px) !important;
+                max-width: 460px !important;
                 width: auto !important;
                 margin: 0 auto !important;
                 z-index: 10000 !important;
-                border-radius: 18px !important;
-                box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) !important;
+                border-radius: 20px !important;
+                padding: 12px 16px 16px 16px !important;
+                box-shadow: 0 24px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
                 animation: popupSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+            }
+
+            .quick-popup-handle {
+                display: block !important;
+            }
+
+            .quick-popup-btn-save {
+                min-height: 44px !important;
+                font-size: 0.88rem !important;
+            }
+
+            .quick-popup-btn-ext {
+                min-height: 44px !important;
             }
 
             @keyframes popupSlideUp {
@@ -1508,20 +1632,36 @@
 
     <!-- Floating Quick-Lookup Popup -->
     <div id="quickLookupPopup" class="quick-lookup-popup">
+        <div class="quick-popup-handle" aria-hidden="true"></div>
         <div class="quick-popup-header">
-            <div>
-                <span id="qpWord" class="quick-popup-word">word</span>
+            <div class="quick-popup-title-group">
+                <div class="quick-popup-word-row">
+                    <span id="qpWord" class="quick-popup-word">word</span>
+                    <span id="qpPos" class="quick-popup-pos" style="display:none;"></span>
+                </div>
                 <span id="qpIpa" class="quick-popup-ipa">/ipa/</span>
             </div>
-            <button class="quick-popup-btn-audio" onclick="speakCurrentPopupWord()">🔊 Nghe</button>
+            <div class="quick-popup-header-actions">
+                <button class="quick-popup-btn-audio" onclick="speakCurrentPopupWord()" title="Nghe phát âm">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+                    <span>Nghe</span>
+                </button>
+                <button class="quick-popup-btn-close" onclick="hideQuickLookup()" title="Đóng" aria-label="Đóng popup">✕</button>
+            </div>
         </div>
-        <div id="qpMeaning" class="quick-popup-meaning">Nghĩa tiếng Việt...</div>
-        <div style="margin-bottom:8px;">
-            <a id="qpWebLink" href="#" target="_blank" style="color:#38bdf8;font-size:0.75rem;text-decoration:none;display:inline-flex;align-items:center;gap:3px;">🌐 Mở Google Dịch chi tiết ↗</a>
+        <div class="quick-popup-body">
+            <div id="qpMeaning" class="quick-popup-meaning">Nghĩa tiếng Việt...</div>
+            <div id="qpContextNote" class="quick-popup-context" style="display:none;"></div>
         </div>
-        <div class="quick-popup-actions">
-            <button class="quick-popup-btn-save" onclick="saveWordToPassage()">⭐ Đánh Dấu Vàng & Lưu Vào Bài</button>
-            <button class="quick-popup-btn-close" onclick="hideQuickLookup()">✕</button>
+        <div class="quick-popup-footer">
+            <button class="quick-popup-btn-save" onclick="saveWordToPassage()">
+                <span class="save-star-icon">⭐</span>
+                <span>Đánh Dấu Vàng & Lưu Vào Bài</span>
+            </button>
+            <a id="qpWebLink" href="#" target="_blank" class="quick-popup-btn-ext" title="Mở rộng trên Google Dịch">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                <span>Google Dịch</span>
+            </a>
         </div>
     </div>
 
@@ -1788,12 +1928,16 @@
         async function showQuickLookup(cleanWord, originalText, rect) {
             const popup = document.getElementById('quickLookupPopup');
             const wordEl = document.getElementById('qpWord');
+            const posEl = document.getElementById('qpPos');
             const ipaEl = document.getElementById('qpIpa');
             const meaningEl = document.getElementById('qpMeaning');
+            const noteEl = document.getElementById('qpContextNote');
             const webLinkEl = document.getElementById('qpWebLink');
 
             wordEl.textContent = cleanWord;
             ipaEl.textContent = '';
+            if (posEl) posEl.style.display = 'none';
+            if (noteEl) noteEl.style.display = 'none';
             
             if (webLinkEl) {
                 webLinkEl.href = `https://translate.google.com/?sl=en&tl=vi&text=${encodeURIComponent(cleanWord)}&op=translate`;
@@ -1834,10 +1978,30 @@
                 }
             }
 
+            // Render UI state helper
+            function updatePopupUI(curMeaning, curIpa, curPos, curNote, curContext) {
+                if (curIpa) ipaEl.textContent = curIpa;
+                if (curPos && posEl) {
+                    posEl.textContent = curPos.toUpperCase();
+                    posEl.style.display = 'inline-block';
+                }
+                if (meaningEl) meaningEl.textContent = curMeaning;
+                if (noteEl) {
+                    if (curContext) {
+                        noteEl.innerHTML = `📖 Trong câu: <em>"${curContext}"</em>`;
+                        noteEl.style.display = 'block';
+                    } else if (curNote) {
+                        noteEl.textContent = curNote;
+                        noteEl.style.display = 'block';
+                    } else {
+                        noteEl.style.display = 'none';
+                    }
+                }
+            }
+
             // Hiển thị ngay lập tức nếu đã có dữ liệu offline
             if (meaning) {
-                ipaEl.textContent = ipa ? ipa : '';
-                meaningEl.textContent = meaning;
+                updatePopupUI(meaning, ipa, pos, usageNote, contextSentenceVi);
                 currentSelectionMeaning = meaning;
                 currentSelectionIpa = ipa;
                 currentSelectionPos = pos;
@@ -1863,11 +2027,7 @@
                     if (resJson && resJson[0]) {
                         const onlineMeaning = resJson[0].map(item => item[0]).join('').trim();
                         if (onlineMeaning) {
-                            if (contextSentenceVi) {
-                                meaningEl.innerHTML = `${onlineMeaning}<br><small style="color:#94a3b8;font-weight:normal;font-size:0.8rem;display:block;margin-top:4px;">📖 Ngữ cảnh câu: "${contextSentenceVi}"</small>`;
-                            } else {
-                                meaningEl.textContent = onlineMeaning;
-                            }
+                            updatePopupUI(onlineMeaning, ipa, pos, usageNote, contextSentenceVi);
                             currentSelectionMeaning = onlineMeaning;
                             positionPopup(rect, popup);
                             return;
@@ -1892,10 +2052,14 @@
 
                 if (subMeanings.length > 0) {
                     meaning = subMeanings.join(' • ');
-                    meaningEl.textContent = meaning;
+                    updatePopupUI(meaning, ipa, pos, usageNote, contextSentenceVi);
                     currentSelectionMeaning = meaning;
                 } else {
-                    meaningEl.innerHTML = '<em>Chưa có nghĩa offline cho cụm này.</em><br><small style="color:#38bdf8;">Bấm liên kết bên dưới để mở Google Dịch.</small>';
+                    meaningEl.innerHTML = '<em>Chưa có nghĩa offline cho cụm này.</em>';
+                    if (noteEl) {
+                        noteEl.innerHTML = '<span style="color:#38bdf8;">Bấm nút "Google Dịch" để mở tra cứu trực tuyến.</span>';
+                        noteEl.style.display = 'block';
+                    }
                     currentSelectionMeaning = cleanWord;
                 }
             }
@@ -1903,6 +2067,12 @@
         }
 
         function positionPopup(rect, popup) {
+            if (window.innerWidth <= 640) {
+                popup.style.top = '';
+                popup.style.left = '';
+                return;
+            }
+
             const pRect = popup.getBoundingClientRect();
             let top = rect.top + window.scrollY - pRect.height - 12;
             let left = rect.left + window.scrollX + (rect.width / 2) - (pRect.width / 2);
