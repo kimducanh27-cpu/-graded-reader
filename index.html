@@ -147,6 +147,50 @@
             transform: translateY(-1px);
         }
 
+        .nav-pill.active {
+            background: rgba(255, 255, 255, 0.28);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .nav-pill.nav-pill-practice {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.35) 0%, rgba(217, 119, 6, 0.45) 100%);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: #fef3c7;
+        }
+
+        .nav-pill.nav-pill-practice:hover, .nav-pill.nav-pill-practice.active {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-para-play {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 26px;
+            height: 26px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid #bfdbfe;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-right: 8px;
+            vertical-align: middle;
+            transition: all 0.15s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .btn-para-play:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: scale(1.08);
+            box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+        }
+
         /* Floating Sticky Controls Toolbar */
         .controls-toolbar {
             position: sticky;
@@ -1126,6 +1170,9 @@
         .token-sound-icon {
             font-size: 0.72rem;
             opacity: 0.7;
+            user-select: none;
+            -webkit-user-select: none;
+            pointer-events: none;
         }
 
         /* Collapsible Cards (Context Clues & Translation) */
@@ -2150,11 +2197,12 @@
             <h1>COFFEE JOURNEY AND MORNING ROUTINES</h1>
             <p class="hero-sub">Hành trình hương vị cà phê và nhịp sống buổi sáng</p>
             <div class="level-nav">
-                <button class="nav-pill" onclick="scrollToLevel('A1_1')"><span>🟢</span> <span class="lvl-label-full">A1.1</span><span class="lvl-label-short">A1.1</span></button>
-<button class="nav-pill" onclick="scrollToLevel('A1_2')"><span>🟢</span> <span class="lvl-label-full">A1.2</span><span class="lvl-label-short">A1.2</span></button>
-<button class="nav-pill" onclick="scrollToLevel('A1_3')"><span>🟢</span> <span class="lvl-label-full">A1.3</span><span class="lvl-label-short">A1.3</span></button>
-<button class="nav-pill" onclick="scrollToLevel('A2')"><span>🔵</span> <span class="lvl-label-full">A2</span><span class="lvl-label-short">A2</span></button>
-<button class="nav-pill" onclick="scrollToLevel('B1')"><span>🟣</span> <span class="lvl-label-full">B1</span><span class="lvl-label-short">B1</span></button>
+                <button class="nav-pill" data-target="section_A1_1" onclick="scrollToLevel('A1_1')"><span>🟢</span> <span class="lvl-label-full">A1.1</span><span class="lvl-label-short">A1.1</span></button>
+<button class="nav-pill" data-target="section_A1_2" onclick="scrollToLevel('A1_2')"><span>🟢</span> <span class="lvl-label-full">A1.2</span><span class="lvl-label-short">A1.2</span></button>
+<button class="nav-pill" data-target="section_A1_3" onclick="scrollToLevel('A1_3')"><span>🟢</span> <span class="lvl-label-full">A1.3</span><span class="lvl-label-short">A1.3</span></button>
+<button class="nav-pill" data-target="section_A2" onclick="scrollToLevel('A2')"><span>🔵</span> <span class="lvl-label-full">A2</span><span class="lvl-label-short">A2</span></button>
+<button class="nav-pill" data-target="section_B1" onclick="scrollToLevel('B1')"><span>🟣</span> <span class="lvl-label-full">B1</span><span class="lvl-label-short">B1</span></button>
+<button class="nav-pill nav-pill-practice" data-target="practiceContainer" onclick="scrollToLevel('practiceContainer')"><span>🚀</span> <span class="lvl-label-full">Luyện Tập</span><span class="lvl-label-short">Luyện Tập</span></button>
 
             </div>
         </header>
@@ -2223,7 +2271,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_1_0">Every morning, Alex wakes up early at 6:30 AM. He goes to the kitchen to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> his first cup of coffee.</p><p class="reading-para" id="p_A1_1_1">The sweet <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> of the hot drink fills the quiet room. It gives him an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> feeling before he starts his daily routine.</p>
+                <p class="reading-para" id="p_A1_1_0"><button class="btn-para-play" onclick='speakText("Every morning, Alex wakes up early at 6:30 AM. He goes to the kitchen to brew his first cup of coffee.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>Every morning, Alex wakes up early at 6:30 AM. He goes to the kitchen to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> his first cup of coffee.</p><p class="reading-para" id="p_A1_1_1"><button class="btn-para-play" onclick='speakText("The sweet aroma of the hot drink fills the quiet room. It gives him an invigorating feeling before he starts his daily routine.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>The sweet <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> of the hot drink fills the quiet room. It gives him an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> feeling before he starts his daily routine.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -2264,7 +2312,7 @@
             
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_2_0">Alex sits at the wooden table by the window with warm bread. He loves to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> fresh coffee and smell the rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> in the air.</p><p class="reading-para" id="p_A1_2_1">His mother explains that people carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> brown coffee beans before grinding them. Taking a slow sip gives Alex an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> boost of energy for school.</p>
+                <p class="reading-para" id="p_A1_2_0"><button class="btn-para-play" onclick='speakText("Alex sits at the wooden table by the window with warm bread. He loves to brew fresh coffee and smell the rich aroma in the air.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>Alex sits at the wooden table by the window with warm bread. He loves to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> fresh coffee and smell the rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> in the air.</p><p class="reading-para" id="p_A1_2_1"><button class="btn-para-play" onclick='speakText("His mother explains that people carefully roast brown coffee beans before grinding them. Taking a slow sip gives Alex an invigorating boost of energy for school.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>His mother explains that people carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> brown coffee beans before grinding them. Taking a slow sip gives Alex an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> boost of energy for school.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -2310,7 +2358,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_3_0">On Sunday morning, Alex walks to the local market with his father. The cool morning breeze feels wonderful and <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> on his face.</p><p class="reading-para" id="p_A1_3_1">They stop at a small stall where sellers <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> fresh coffee beans over a warm stove. Alex buys a small bag of dark beans so he can <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> coffee at home and enjoy its deep <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span>.</p>
+                <p class="reading-para" id="p_A1_3_0"><button class="btn-para-play" onclick='speakText("On Sunday morning, Alex walks to the local market with his father. The cool morning breeze feels wonderful and invigorating on his face.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>On Sunday morning, Alex walks to the local market with his father. The cool morning breeze feels wonderful and <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> on his face.</p><p class="reading-para" id="p_A1_3_1"><button class="btn-para-play" onclick='speakText("They stop at a small stall where sellers roast fresh coffee beans over a warm stove. Alex buys a small bag of dark beans so he can brew coffee at home and enjoy its deep aroma.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>They stop at a small stall where sellers <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> fresh coffee beans over a warm stove. Alex buys a small bag of dark beans so he can <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> coffee at home and enjoy its deep <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span>.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -2356,7 +2404,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A2_0">On Saturday mornings, Alex often visits a local coffee shop in town. The baristas there choose to <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> small batches of fresh coffee beans every week because it keeps the flavor fresh.</p><p class="reading-para" id="p_A2_1">Customers love to watch them <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> specialty drinks by hand. The rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> floating around the wooden tables creates a wonderfully <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> atmosphere for everyone working on their laptops.</p>
+                <p class="reading-para" id="p_A2_0"><button class="btn-para-play" onclick='speakText("On Saturday mornings, Alex often visits a local coffee shop in town. The baristas there choose to roast small batches of fresh coffee beans every week because it keeps the flavor fresh.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>On Saturday mornings, Alex often visits a local coffee shop in town. The baristas there choose to <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> small batches of fresh coffee beans every week because it keeps the flavor fresh.</p><p class="reading-para" id="p_A2_1"><button class="btn-para-play" onclick='speakText("Customers love to watch them brew specialty drinks by hand. The rich aroma floating around the wooden tables creates a wonderfully invigorating atmosphere for everyone working on their laptops.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>Customers love to watch them <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> specialty drinks by hand. The rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> floating around the wooden tables creates a wonderfully <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> atmosphere for everyone working on their laptops.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -2402,7 +2450,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_B1_0">Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship. Specialists must carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.</p><p class="reading-para" id="p_B1_1">When baristas <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> the extracted grounds with filtered water, the captivating <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> is immediately released into the air. This sensory experience provides an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> psychological sensation that stimulates productivity and creativity across cultures worldwide.</p>
+                <p class="reading-para" id="p_B1_0"><button class="btn-para-play" onclick='speakText("Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship. Specialists must carefully roast green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship. Specialists must carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.</p><p class="reading-para" id="p_B1_1"><button class="btn-para-play" onclick='speakText("When baristas brew the extracted grounds with filtered water, the captivating aroma is immediately released into the air. This sensory experience provides an invigorating psychological sensation that stimulates productivity and creativity across cultures worldwide.")' title="Nghe đoạn này" aria-label="Nghe đoạn này">🎧</button>When baristas <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> the extracted grounds with filtered water, the captivating <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> is immediately released into the air. This sensory experience provides an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> psychological sensation that stimulates productivity and creativity across cultures worldwide.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -2614,10 +2662,13 @@
 
     <script>
         const VOCAB_DATA = [{"word": "aroma", "ipa": "/əˈrəʊmə/", "pos": "noun", "meaning_vn": "hương thơm dịu, mùi thơm đặc trưng (của đồ ăn, đồ uống)", "usage_note": "Thường dùng với cà phê, bánh mì mới nướng, trà. Collocation: rich aroma, pleasant aroma.", "example_a1": "I love the warm aroma of coffee every morning.", "example_a2": "As soon as she walked into the kitchen, the rich aroma of fresh bread welcomed her.", "example_a3_b1": "The distinctive aroma of roasted arabica beans lingered in the cozy coffee shop for hours.", "cloze_anki_front": "The warm ______ of fresh coffee filled the entire room.", "cloze_anki_back": "aroma (/əˈrəʊmə/) - hương thơm dịu"}, {"word": "roast", "ipa": "/rəʊst/", "pos": "verb / noun", "meaning_vn": "rang (hạt), nướng (thịt); độ rang hạt cà phê", "usage_note": "Trong ngữ cảnh cà phê: dark roast (rang đậm), light roast (rang nhạt).", "example_a1": "They roast coffee beans before making drinks.", "example_a2": "My brother prefers to roast his own coffee beans at home on weekends.", "example_a3_b1": "Master roasters carefully monitor the temperature to roast green beans to perfection.", "cloze_anki_front": "Specialists carefully ______ coffee beans to create rich flavors.", "cloze_anki_back": "roast (/rəʊst/) - rang, nướng"}, {"word": "brew", "ipa": "/bruː/", "pos": "verb", "meaning_vn": "pha (trà, cà phê), ủ (bia)", "usage_note": "Hành động chế nước sôi qua trà/cà phê để chiết xuất hương vị: brew a fresh cup of coffee.", "example_a1": "My mom brews a hot cup of tea after lunch.", "example_a2": "It takes about five minutes to brew coffee using this modern machine.", "example_a3_b1": "Although there are many ways to brew espresso, temperature control remains the decisive factor.", "cloze_anki_front": "It only takes three minutes to ______ a fresh cup of coffee.", "cloze_anki_back": "brew (/bruː/) - pha (trà, cà phê)"}, {"word": "invigorating", "ipa": "/ɪnˈvɪɡəreɪtɪŋ/", "pos": "adjective", "meaning_vn": "sảng khoái, tiếp thêm sinh lực, làm hưng phấn", "usage_note": "Miêu tả cảm giác, không khí hoặc đồ uống giúp tinh thần tỉnh táo: an invigorating morning walk / coffee.", "example_a1": "Cold water has an invigorating feeling on a hot day.", "example_a2": "A quick run in the morning gives me an invigorating start to the working day.", "example_a3_b1": "The invigorating scent of freshly brewed coffee provided the energy boost needed for a demanding work shift.", "cloze_anki_front": "A cup of warm espresso provides an ______ feeling before a busy day.", "cloze_anki_back": "invigorating (/ɪnˈvɪɡəreɪtɪŋ/) - tiếp thêm sinh lực, sảng khoái"}];
+        const INITIAL_TARGET_WORDS = JSON.parse(JSON.stringify(VOCAB_DATA));
         const PASSAGE_GLOSSARY = {"he goes to the kitchen": {"meaning_vn": "anh ấy đi vào bếp (để chuẩn bị)", "ipa": "/hiː ɡəʊz tuː ðə ˈkɪtʃɪn/", "pos": "clause", "usage_note": "Mệnh đề diễn tả hành động di chuyển vào không gian nhà bếp."}, "every morning": {"meaning_vn": "mỗi buổi sáng, mọi buổi sáng", "ipa": "/ˈevri ˈmɔːnɪŋ/", "pos": "phrase", "usage_note": "Cụm trạng ngữ chỉ thời gian lặp lại đều đặn mỗi ngày.", "example_a1": "Every morning, I drink a glass of water.", "example_a2": "Alex goes jogging every morning before heading to the office.", "example_a3_b1": "Engaging in mindful reading every morning enhances cognitive stamina for the entire day."}, "he": {"meaning_vn": "anh ấy, cậu ấy, ông ấy", "ipa": "/hiː/", "pos": "pronoun"}, "goes": {"meaning_vn": "đi, bước tới", "ipa": "/ɡəʊz/", "pos": "verb"}, "early": {"meaning_vn": "sớm, từ sáng sớm", "ipa": "/ˈɜːli/", "pos": "adj / adv", "usage_note": "Chỉ thời gian trước giờ bình thường hoặc lúc ban mai. Cụm từ hay gặp: wake up early (thức dậy sớm), early morning.", "example_a1": "She wakes up early to prepare breakfast.", "example_a2": "An early morning routine helps people stay focused throughout the day.", "example_a3_b1": "Early risers frequently experience higher productivity during undisturbed morning hours.", "cloze_anki_front": "Alex wakes up ______ at 6:30 AM every day.", "cloze_anki_back": "early (/ˈɜːli/) - sớm, từ sáng sớm"}, "wakes": {"meaning_vn": "thức dậy (wake up)", "ipa": "/weɪks/", "pos": "verb", "usage_note": "Ngừng ngủ, tỉnh giấc. Cụm động từ: wake up.", "example_a1": "He wakes up at six o'clock.", "example_a2": "Whenever the alarm rings, she wakes up immediately.", "example_a3_b1": "He wakes up with a clear mental state ready for intellectual work."}, "kitchen": {"meaning_vn": "nhà bếp, gian bếp", "ipa": "/ˈkɪtʃɪn/", "pos": "noun", "usage_note": "Nơi nấu nướng và pha chế đồ ăn thức uống trong gia đình.", "example_a1": "The kitchen is clean and warm.", "example_a2": "He goes to the kitchen to prepare breakfast.", "example_a3_b1": "Modern kitchens are often designed to optimize both culinary workflow and social interaction."}, "routine": {"meaning_vn": "thói quen hàng ngày, lịch trình thường nhật", "ipa": "/ruːˈtiːn/", "pos": "noun", "usage_note": "Chuỗi hành động lặp đi lặp lại thành nếp quen. Cụm: daily routine (thói quen mỗi ngày).", "example_a1": "Walking in the park is my morning routine.", "example_a2": "A consistent routine brings stability to a busy life.", "example_a3_b1": "Establishing a well-structured daily routine fosters emotional stability and sustained cognitive output."}, "batches": {"meaning_vn": "mẻ (hàng), lô (sản phẩm làm cùng một lượt)", "ipa": "/ˈbætʃɪz/", "pos": "noun", "usage_note": "Số lượng hàng hóa/thực phẩm được sản xuất trong một lần. Cụm: small batches (từng mẻ nhỏ).", "example_a1": "She bakes cookies in small batches.", "example_a2": "The cafe roasts beans in small batches for fresh taste.", "example_a3_b1": "Artisan producers prioritize small batches to maintain rigorous quality control standards."}, "craftsmanship": {"meaning_vn": "kỹ nghệ, sự khéo léo tay nghề bậc thầy", "ipa": "/ˈkrɑːftsmənʃɪp/", "pos": "noun", "usage_note": "Kỹ năng điêu luyện của người thợ thủ công lành nghề.", "example_a1": "The table shows good craftsmanship.", "example_a2": "Their craftsmanship makes every coffee cup special.", "example_a3_b1": "The marriage of modern sensory science and traditional craftsmanship defines specialty coffee roasting."}, "captivating": {"meaning_vn": "quyến rũ, say đắm, thu hút mãnh liệt", "ipa": "/ˈkæptɪveɪtɪŋ/", "pos": "adjective", "usage_note": "Làm say lòng người bởi vẻ đẹp, hương thơm hoặc âm thanh.", "example_a1": "The flower has a captivating scent.", "example_a2": "Her captivating story held everyone's attention.", "example_a3_b1": "The captivating aroma of dark roast beans effortlessly draws passersby into the boutique cafe."}};
         const SENTENCE_PAIRS = [{"en": "Every morning, Alex wakes up early at 6:30 AM.", "vi": "Mỗi buổi sáng, Alex thức dậy sớm lúc 6:30."}, {"en": "He goes to the kitchen to brew his first cup of coffee.", "vi": "Anh vào bếp để pha tách cà phê đầu tiên trong ngày."}, {"en": "The sweet aroma of the hot drink fills the quiet room.", "vi": "Mùi hương thơm dịu của thức uống nóng lan tỏa khắp căn phòng yên tĩnh."}, {"en": "It gives him an invigorating feeling before he starts his daily routine.", "vi": "Nó đem lại cho anh cảm giác sảng khoái trước khi bắt đầu lịch trình thường nhật."}, {"en": "Alex sits at the wooden table by the window with warm bread.", "vi": "Alex ngồi tại chiếc bàn gỗ bên khung cửa sổ cùng đĩa bánh mì nóng."}, {"en": "He loves to brew fresh coffee and smell the rich aroma in the air.", "vi": "Cậu thích tự pha cà phê tươi và tận hưởng hương thơm dịu lan tỏa trong không khí."}, {"en": "His mother explains that people carefully roast brown coffee beans before grinding them.", "vi": "Mẹ cậu giải thích rằng người ta phải rang kỹ những hạt cà phê nâu trước khi đem xay."}, {"en": "Taking a slow sip gives Alex an invigorating boost of energy for school.", "vi": "Nhấp một ngụm nhỏ mang lại cho Alex nguồn năng lượng sảng khoái để chuẩn bị đến trường."}, {"en": "On Sunday morning, Alex walks to the local market with his father.", "vi": "Vào sáng Chủ nhật, Alex cùng bố đi dạo đến khu chợ địa phương."}, {"en": "The cool morning breeze feels wonderful and invigorating on his face.", "vi": "Làn gió sớm mát lành đem lại cảm giác thật sảng khoái trên gương mặt cậu."}, {"en": "They stop at a small stall where sellers roast fresh coffee beans over a warm stove.", "vi": "Họ dừng chân tại một quầy hàng nhỏ nơi người bán rang hạt cà phê tươi trên bếp ấm."}, {"en": "Alex buys a small bag of dark beans so he can brew coffee at home and enjoy its deep aroma.", "vi": "Alex mua một túi hạt rang đậm để có thể tự pha cà phê tại nhà và thưởng thức hương thơm nồng nàn của nó."}, {"en": "On Saturday mornings, Alex often visits a local coffee shop in town.", "vi": "Vào các buổi sáng thứ Bảy, Alex thường ghé một quán cà phê địa phương trong thị trấn."}, {"en": "The baristas there choose to roast small batches of fresh coffee beans every week because it keeps the flavor fresh.", "vi": "Các thợ pha chế ở đó chọn rang từng mẻ nhỏ hạt cà phê tươi mỗi tuần vì điều đó giữ được hương vị tươi mới."}, {"en": "Customers love to watch them brew specialty drinks by hand.", "vi": "Khách hàng rất thích ngắm họ pha các món đồ uống đặc biệt bằng tay."}, {"en": "The rich aroma floating around the wooden tables creates a wonderfully invigorating atmosphere for everyone working on their laptops.", "vi": "Mùi hương ngào ngạt lan tỏa quanh những chiếc bàn gỗ tạo nên một không gian vô cùng sảng khoái cho những ai đang làm việc trên máy tính."}, {"en": "Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship.", "vi": "Đằng sau mỗi tách cà phê tuyệt hảo là một quy trình khoa học tinh tế kết hợp giữa hóa học và kỹ nghệ thủ công."}, {"en": "Specialists must carefully roast green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.", "vi": "Các chuyên gia phải rang hạt cà phê nhân một cách cẩn trọng ở nhiệt độ chuẩn xác, biến đổi các loại đường tự nhiên thành những hợp chất hương vị phức hợp."}, {"en": "When baristas brew the extracted grounds with filtered water, the captivating aroma is immediately released into the air.", "vi": "Khi các thợ pha chế chiết xuất bột cà phê với nước đã lọc, hương thơm quyến rũ lập tức lan tỏa vào không khí."}, {"en": "This sensory experience provides an invigorating psychological sensation that stimulates productivity and creativity across cultures worldwide.", "vi": "Trải nghiệm cảm giác này mang lại sự sảng khoái và hưng phấn tâm lý, kích thích năng suất cũng như sự sáng tạo trong nhiều nền văn hóa khắp thế giới."}];
         let currentRate = 0.8;
         let selectedVoice = null;
+        const activeUtterances = new Set();
+        let currentActiveSideWord = null;
 
         // Current lookup selection state
         let currentSelectionWord = "";
@@ -2671,19 +2722,31 @@
             }
         }
 
-        function speakText(text) {
+        function sanitizeForSpeech(text) {
+            if (!text) return '';
+            return [...text].filter(c => {
+                const cp = c.codePointAt(0);
+                return !(cp >= 0x2600 && cp <= 0x27BF) && !(cp >= 0x1F300 && cp <= 0x1FAFF);
+            }).join('').replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim();
+        }
+
+        function speakText(rawText) {
             if (!('speechSynthesis' in window)) {
                 alert('Trình duyệt không hỗ trợ Web Speech API.');
                 return;
             }
+            const text = sanitizeForSpeech(rawText);
+            if (!text) return;
+
             window.speechSynthesis.cancel();
+            activeUtterances.clear();
 
             const stopBtn = document.getElementById('btnStop');
             if (stopBtn) stopBtn.style.display = 'inline-flex';
 
             // Split utterances longer than 200 chars by sentence for speech synthesis stability
             const utterances = [];
-            if (text && text.length > 200) {
+            if (text.length > 200) {
                 const sentences = text.match(/[^.!?]+[.!?]+(\s+|$)|[^.!?]+$/g) || [text];
                 sentences.forEach(s => {
                     const cleanS = s.trim();
@@ -2694,7 +2757,7 @@
                         utterances.push(u);
                     }
                 });
-            } else if (text) {
+            } else {
                 const u = new SpeechSynthesisUtterance(text);
                 u.rate = currentRate;
                 if (selectedVoice) { try { u.voice = selectedVoice; } catch (e) {} }
@@ -2702,10 +2765,19 @@
             }
 
             if (utterances.length > 0) {
-                const last = utterances[utterances.length - 1];
-                last.onend = () => { if (stopBtn) stopBtn.style.display = 'none'; };
-                last.onerror = () => { if (stopBtn) stopBtn.style.display = 'none'; };
-                utterances.forEach(u => window.speechSynthesis.speak(u));
+                utterances.forEach((u, idx) => {
+                    activeUtterances.add(u);
+                    const isLast = idx === utterances.length - 1;
+                    u.onend = () => {
+                        activeUtterances.delete(u);
+                        if (isLast && stopBtn) stopBtn.style.display = 'none';
+                    };
+                    u.onerror = () => {
+                        activeUtterances.delete(u);
+                        if (isLast && stopBtn) stopBtn.style.display = 'none';
+                    };
+                    window.speechSynthesis.speak(u);
+                });
             } else {
                 if (stopBtn) stopBtn.style.display = 'none';
             }
@@ -2715,7 +2787,18 @@
             if ('speechSynthesis' in window) {
                 window.speechSynthesis.cancel();
             }
-            document.getElementById('btnStop').style.display = 'none';
+            activeUtterances.clear();
+            const stopBtn = document.getElementById('btnStop');
+            if (stopBtn) stopBtn.style.display = 'none';
+        }
+
+        function speakExample(lvlKey) {
+            if (!currentActiveSideWord) return;
+            let sentence = '';
+            if (lvlKey === 'a1') sentence = currentActiveSideWord.example_a1;
+            else if (lvlKey === 'a2') sentence = currentActiveSideWord.example_a2;
+            else if (lvlKey === 'a3_b1' || lvlKey === 'b1') sentence = currentActiveSideWord.example_a3_b1;
+            if (sentence) speakText(sentence);
         }
 
         function toggleCollapse(header) {
@@ -2779,6 +2862,7 @@
                 VOCAB_DATA.push(wordObj);
             }
 
+            currentActiveSideWord = wordObj;
             const panelBody = document.getElementById('panelBody');
             panelBody.innerHTML = `
                 <div class="word-hero">
@@ -2807,15 +2891,15 @@
                     <div class="example-list">
                         <div class="example-item">
                             <span class="example-lvl-tag tag-a1">A1</span> ${wordObj.example_a1 || ''}
-                            <button class="btn-speak-inline" onclick="speakText('${(wordObj.example_a1 || '').replace(/'/g, "\\'")}')">🔊</button>
+                            <button class="btn-speak-inline" onclick="speakExample('a1')" title="Nghe câu ví dụ A1">🔊</button>
                         </div>
                         <div class="example-item">
                             <span class="example-lvl-tag tag-a2">A2</span> ${wordObj.example_a2 || ''}
-                            <button class="btn-speak-inline" onclick="speakText('${(wordObj.example_a2 || '').replace(/'/g, "\\'")}')">🔊</button>
+                            <button class="btn-speak-inline" onclick="speakExample('a2')" title="Nghe câu ví dụ A2">🔊</button>
                         </div>
                         <div class="example-item">
                             <span class="example-lvl-tag tag-b1">B1</span> ${wordObj.example_a3_b1 || ''}
-                            <button class="btn-speak-inline" onclick="speakText('${(wordObj.example_a3_b1 || '').replace(/'/g, "\\'")}')">🔊</button>
+                            <button class="btn-speak-inline" onclick="speakExample('a3_b1')" title="Nghe câu ví dụ B1">🔊</button>
                         </div>
                     </div>
                 </div>
@@ -2835,8 +2919,8 @@
                         <div class="mini-spell-cloze">"${wordObj.cloze_anki_front || ('Complete: ' + wordObj.word)}"</div>
                         <div class="mini-spell-hint">${wordObj.pos ? '[' + wordObj.pos + '] • ' : ''}${cleanKey.length} chữ cái</div>
                         <div class="mini-spell-input-group">
-                            <input type="text" id="panelSpellInput" class="mini-spell-input" placeholder="Gõ từ tiếng Anh..." autocomplete="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter') checkPanelSpelling('${cleanKey}')">
-                            <button class="btn-mini-spell" onclick="checkPanelSpelling('${cleanKey}')">Kiểm Tra</button>
+                            <input type="text" id="panelSpellInput" class="mini-spell-input" placeholder="Gõ từ tiếng Anh..." autocomplete="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter') checkPanelSpelling()">
+                            <button class="btn-mini-spell" onclick="checkPanelSpelling()">Kiểm Tra</button>
                         </div>
                         <div id="panelSpellFeedback" class="mini-spell-feedback" style="display:none;"></div>
                     </div>
@@ -2871,10 +2955,17 @@
             }
 
             const selection = window.getSelection();
-            const rawText = selection ? selection.toString().trim() : '';
+            let rawText = selection ? selection.toString().trim() : '';
             if (!rawText) {
                 return;
             }
+
+            // Sanitize selection: remove emoji (such as 🔊) and normalize internal whitespace
+            rawText = [...rawText].filter(c => {
+                const cp = c.codePointAt(0);
+                return !(cp >= 0x2600 && cp <= 0x27BF) && !(cp >= 0x1F300 && cp <= 0x1FAFF);
+            }).join('').replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim();
+
             if (rawText.length < 2 || rawText.length > 500) {
                 hideQuickLookup();
                 return;
@@ -2887,8 +2978,10 @@
                 return;
             }
 
-            const isExistingToken = e.target && e.target.closest('.vocab-token');
-            if (isExistingToken) {
+            // Only suppress quick popup if the user simply clicked inside a single token (token click handler takes care of it).
+            // If the user made a multi-word selection or dragged across tokens, ALLOW quick lookup!
+            const isSingleTokenClick = e.target && e.target.closest('.vocab-token') && !cleanWord.includes(' ') && selection.isCollapsed;
+            if (isSingleTokenClick) {
                 hideQuickLookup();
                 return;
             }
@@ -3189,15 +3282,17 @@
         }
 
         function handleTokenClick(e, wordKey) {
-            const token = e.currentTarget;
-            if (isMaskModeActive) {
+            const token = (e && e.currentTarget) || (e && e.target && e.target.closest('.vocab-token'));
+            const key = wordKey || (token && token.getAttribute('data-word')) || '';
+            if (!key) return;
+            if (isMaskModeActive && token) {
                 if (!token.classList.contains('revealed')) {
                     token.classList.add('revealed');
-                    speakText(wordKey);
+                    speakText(key);
                     return;
                 }
             }
-            openSidePanel(wordKey);
+            openSidePanel(key);
         }
 
         // ==========================================
@@ -3207,9 +3302,49 @@
         let spellingIndex = 0;
         let ankiIndex = 0;
         let isSpellingWaitingRetype = false;
+        let practiceFilter = 'target';
+        let ankiStats = { again: 0, good: 0, easy: 0 };
+
+        function escapeRegExp(s) {
+            return (s || '').split('').map(c => ('-[]/{}()*+?.' + String.fromCharCode(92) + '^$|').indexOf(c) !== -1 ? (String.fromCharCode(92) + c) : c).join('');
+        }
+
+        function getAllAvailableWords() {
+            const list = [...VOCAB_DATA];
+            const wb = String.fromCharCode(92) + 'b';
+            if (typeof PASSAGE_GLOSSARY !== 'undefined') {
+                for (const [key, g] of Object.entries(PASSAGE_GLOSSARY)) {
+                    if (key.length >= 2 && !key.includes(' ') && !list.some(w => w.word.toLowerCase() === key.toLowerCase())) {
+                        const ex1 = g.example_a1 || `Alex uses "${key}" in everyday English.`;
+                        const escapedKey = escapeRegExp(key);
+                        const r = new RegExp(wb + escapedKey + wb, 'gi');
+                        const clozeFront = g.cloze_anki_front || (r.test(ex1) ? ex1.replace(r, '______') : `Review: Complete sentence with ______ (${key.length} letters).`);
+                        list.push({
+                            word: key,
+                            ipa: g.ipa || '',
+                            pos: g.pos || 'từ vựng',
+                            meaning_vn: g.meaning_vn || '',
+                            usage_note: g.usage_note || '',
+                            example_a1: ex1,
+                            example_a2: g.example_a2 || '',
+                            example_a3_b1: g.example_a3_b1 || '',
+                            cloze_anki_front: clozeFront,
+                            cloze_anki_back: `${key}${g.ipa ? ' (' + g.ipa + ')' : ''} - ${g.meaning_vn || ''}`
+                        });
+                    }
+                }
+            }
+            return list;
+        }
 
         function getPracticeWords() {
-            return VOCAB_DATA && VOCAB_DATA.length > 0 ? VOCAB_DATA : [];
+            if (practiceFilter === 'target') {
+                return INITIAL_TARGET_WORDS && INITIAL_TARGET_WORDS.length > 0 ? INITIAL_TARGET_WORDS : VOCAB_DATA;
+            } else if (practiceFilter === 'saved') {
+                return VOCAB_DATA.filter(w => w.isSaved);
+            } else {
+                return getAllAvailableWords();
+            }
         }
 
         function switchPracticeTab(tab) {
@@ -3219,6 +3354,10 @@
             const panelSpelling = document.getElementById('tabContentSpelling');
             const panelAnki = document.getElementById('tabContentAnki');
             
+            if (document.activeElement && typeof document.activeElement.blur === 'function') {
+                document.activeElement.blur();
+            }
+
             if (tab === 'spelling') {
                 btnSpelling.classList.add('active');
                 btnAnki.classList.remove('active');
@@ -3234,47 +3373,6 @@
             }
         }
 
-        let practiceFilter = 'target';
-
-        function escapeRegExp(s) {
-            return (s || '').split('').map(c => ('-[]/{}()*+?.' + String.fromCharCode(92) + '^$|').indexOf(c) !== -1 ? (String.fromCharCode(92) + c) : c).join('');
-        }
-
-        function getAllAvailableWords() {
-            const list = [...VOCAB_DATA];
-            if (typeof PASSAGE_GLOSSARY !== 'undefined') {
-                for (const [key, g] of Object.entries(PASSAGE_GLOSSARY)) {
-                    if (key.length >= 2 && !key.includes(' ') && !list.some(w => w.word.toLowerCase() === key.toLowerCase())) {
-                        list.push({
-                            word: key,
-                            ipa: g.ipa || '',
-                            pos: g.pos || 'từ vựng',
-                            meaning_vn: g.meaning_vn || '',
-                            usage_note: g.usage_note || '',
-                            example_a1: g.example_a1 || `Alex uses "${key}" in everyday English.`,
-                            example_a2: g.example_a2 || '',
-                            example_a3_b1: g.example_a3_b1 || '',
-                            cloze_anki_front: g.cloze_anki_front || `Review: Complete sentence with ______ (${key}).`,
-                            cloze_anki_back: `${key}${g.ipa ? ' (' + g.ipa + ')' : ''} - ${g.meaning_vn || ''}`
-                        });
-                    }
-                }
-            }
-            return list;
-        }
-
-        function getPracticeWords() {
-            if (practiceFilter === 'target') {
-                const targets = VOCAB_DATA.filter(w => !w.isSaved);
-                return targets.length > 0 ? targets.slice(0, 4) : VOCAB_DATA;
-            } else if (practiceFilter === 'saved') {
-                const saved = VOCAB_DATA.filter(w => w.isSaved);
-                return saved.length > 0 ? saved : VOCAB_DATA;
-            } else {
-                return getAllAvailableWords();
-            }
-        }
-
         function setPracticeFilter(filter) {
             practiceFilter = filter;
             document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
@@ -3284,6 +3382,7 @@
             
             spellingIndex = 0;
             ankiIndex = 0;
+            ankiStats = { again: 0, good: 0, easy: 0 };
             if (currentPracticeTab === 'spelling') renderSpellingCard();
             else renderAnkiCard();
         }
@@ -3320,12 +3419,106 @@
             return `Practice sentence with ______ (${wObj.word ? wObj.word.length : 4} letters).`;
         }
 
+        function restartSpellingDeck() {
+            spellingIndex = 0;
+            renderSpellingCard();
+        }
+
         function renderSpellingCard() {
             const words = getPracticeWords();
-            if (words.length === 0) return;
-            if (spellingIndex >= words.length) spellingIndex = 0;
-            if (spellingIndex < 0) spellingIndex = words.length - 1;
-            
+            const panelSpelling = document.getElementById('tabContentSpelling');
+            if (!panelSpelling) return;
+
+            if (words.length === 0) {
+                panelSpelling.innerHTML = `
+                    <div class="practice-card spelling-card">
+                        <div class="practice-empty-state" style="text-align:center;padding:40px 20px;">
+                            <div style="font-size:2.8rem;margin-bottom:12px;">⭐</div>
+                            <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:8px;color:#1e293b;">Chưa có từ nào được lưu</h3>
+                            <p style="color:#64748b;font-size:0.95rem;max-width:440px;margin:0 auto 20px;line-height:1.6;">
+                                Khi đọc bài, hãy chọn từ bất kỳ rồi bấm <strong>"⭐ Đánh Dấu & Lưu"</strong> để tạo danh sách ôn tập riêng của bạn!
+                            </p>
+                            <button class="practice-tab-btn active" style="margin:0 auto;display:inline-flex;" onclick="setPracticeFilter('target')">
+                                🎯 Ôn Tập Từ Trọng Tâm
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (spellingIndex >= words.length) {
+                panelSpelling.innerHTML = `
+                    <div class="practice-card spelling-card">
+                        <div class="practice-completion-card" style="text-align:center;padding:36px 20px;">
+                            <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
+                            <h3 style="font-size:1.35rem;font-weight:800;margin-bottom:8px;color:#1e293b;">Tuyệt Vời! Đã Hoàn Thành Lượt Gõ Chính Tả</h3>
+                            <p style="color:#64748b;font-size:0.95rem;margin-bottom:24px;">Bạn đã luyện phản xạ âm thanh và kiểm tra mặt chữ cho toàn bộ ${words.length} từ.</p>
+                            <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+                                <button class="practice-tab-btn active" style="display:inline-flex;" onclick="restartSpellingDeck()">
+                                    🔄 Luyện Lại Từ Đầu
+                                </button>
+                                <button class="practice-tab-btn" style="display:inline-flex;background:#f1f5f9;border:1px solid #cbd5e1;color:#334155;" onclick="switchPracticeTab('anki')">
+                                    🎴 Sang Flashcard Lật Thẻ
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            // Ensure spelling card HTML structure is in place
+            if (!document.getElementById('spellingInput')) {
+                panelSpelling.innerHTML = `
+                    <div class="practice-card spelling-card">
+                        <div class="card-top-bar">
+                            <div class="word-counter" id="spellingCounter"></div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="spellingProgressBar"></div>
+                            </div>
+                        </div>
+                        <div class="spelling-prompt-area">
+                            <div class="spelling-audio-row">
+                                <button class="spelling-audio-btn" id="btnPlaySpellingAudio" onclick="playCurrentSpellingAudio()" title="Bấm để nghe phát âm tiếng Anh">
+                                    <span class="audio-icon">🔊</span> <span>Nghe Phát Âm</span>
+                                </button>
+                                <button class="spelling-audio-btn sentence-audio" id="btnPlaySentenceAudio" onclick="playCurrentSentenceAudio()" title="Nghe toàn bộ câu ngữ cảnh hoàn chỉnh" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#334155;">
+                                    <span class="audio-icon">🎧</span> <span>Nghe Cả Câu</span>
+                                </button>
+                                <span class="spelling-hint-tag" id="spellingHintTag"></span>
+                            </div>
+                            <div class="spelling-cloze-box">
+                                <p class="spelling-cloze-sentence" id="spellingClozeSentence"></p>
+                            </div>
+                        </div>
+                        <div class="spelling-input-area">
+                            <form id="spellingForm" onsubmit="handleSpellingSubmit(event)">
+                                <div class="spelling-input-wrapper">
+                                    <input type="text" id="spellingInput" class="spelling-input" placeholder="Gõ từ tiếng Anh bạn nghe được..." autocomplete="off" autocapitalize="off" spellcheck="false" required>
+                                    <button type="submit" class="spelling-submit-btn" id="btnCheckSpelling">
+                                        <span>Kiểm Tra</span> <span class="submit-arrow">&rarr;</span>
+                                    </button>
+                                </div>
+                            </form>
+                            <div id="spellingFeedback" class="spelling-feedback" style="display:none;"></div>
+                        </div>
+                        <div class="spelling-nav-bar">
+                            <button class="practice-nav-btn" onclick="prevSpellingWord()">
+                                <span>&larr;</span> <span>Từ Trước</span>
+                            </button>
+                            <button class="practice-nav-btn secondary" onclick="skipSpellingWord()">
+                                <span>Bỏ Qua</span>
+                            </button>
+                            <button class="practice-nav-btn" onclick="nextSpellingWord()">
+                                <span>Từ Kế Tiếp</span> <span>&rarr;</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            if (spellingIndex < 0) spellingIndex = 0;
             const curWord = words[spellingIndex];
             isSpellingWaitingRetype = false;
             
@@ -3406,15 +3599,22 @@
         }
 
         function prevSpellingWord() {
-            spellingIndex--;
+            if (spellingIndex > 0) {
+                spellingIndex--;
+            }
             renderSpellingCard();
             playCurrentSpellingAudio();
         }
 
         function nextSpellingWord() {
-            spellingIndex++;
+            const words = getPracticeWords();
+            if (spellingIndex < words.length) {
+                spellingIndex++;
+            }
             renderSpellingCard();
-            playCurrentSpellingAudio();
+            if (spellingIndex < words.length) {
+                playCurrentSpellingAudio();
+            }
         }
 
         function skipSpellingWord() {
@@ -3424,14 +3624,115 @@
         // ==========================================
         // ANKI FLASHCARD COMPONENT
         // ==========================================
+        function restartAnkiDeck() {
+            ankiIndex = 0;
+            ankiStats = { again: 0, good: 0, easy: 0 };
+            renderAnkiCard();
+        }
+
         function renderAnkiCard() {
             const words = getPracticeWords();
-            if (words.length === 0) return;
-            if (ankiIndex >= words.length) ankiIndex = 0;
-            if (ankiIndex < 0) ankiIndex = words.length - 1;
-            
+            const cardEl = document.getElementById('ankiCard');
+            if (!cardEl) return;
+
+            if (words.length === 0) {
+                cardEl.innerHTML = `
+                    <div class="practice-empty-state" style="text-align:center;padding:40px 20px;">
+                        <div style="font-size:2.8rem;margin-bottom:12px;">⭐</div>
+                        <h3 style="font-size:1.25rem;font-weight:700;margin-bottom:8px;color:#1e293b;">Chưa có từ nào được lưu</h3>
+                        <p style="color:#64748b;font-size:0.95rem;max-width:440px;margin:0 auto 20px;line-height:1.6;">
+                            Khi đọc bài, hãy chọn từ bất kỳ rồi bấm <strong>"⭐ Đánh Dấu & Lưu"</strong> để tạo danh sách ôn tập riêng của bạn!
+                        </p>
+                        <button class="practice-tab-btn active" style="margin:0 auto;display:inline-flex;" onclick="setPracticeFilter('target')">
+                            🎯 Ôn Tập Từ Trọng Tâm
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            if (ankiIndex >= words.length) {
+                const total = words.length;
+                cardEl.innerHTML = `
+                    <div class="practice-completion-card" style="text-align:center;padding:36px 20px;">
+                        <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
+                        <h3 style="font-size:1.35rem;font-weight:800;margin-bottom:8px;color:#1e293b;">Hoàn Thành Toàn Bộ Thẻ!</h3>
+                        <p style="color:#64748b;font-size:0.95rem;margin-bottom:24px;">Bạn đã xem và đánh giá tất cả ${total} thẻ trong phần này.</p>
+                        
+                        <div style="display:flex;justify-content:center;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
+                            <div style="background:#f0fdf4;border:1px solid #bbf7d0;padding:12px 18px;border-radius:12px;min-width:100px;">
+                                <div style="font-size:1.4rem;font-weight:800;color:#16a34a;">${ankiStats.easy}</div>
+                                <div style="font-size:0.78rem;font-weight:700;color:#15803d;text-transform:uppercase;">🟢 Đã Thuộc</div>
+                            </div>
+                            <div style="background:#fefce8;border:1px solid #fef08a;padding:12px 18px;border-radius:12px;min-width:100px;">
+                                <div style="font-size:1.4rem;font-weight:800;color:#ca8a04;">${ankiStats.good}</div>
+                                <div style="font-size:0.78rem;font-weight:700;color:#a16207;text-transform:uppercase;">🟡 Tạm Nhớ</div>
+                            </div>
+                            <div style="background:#fef2f2;border:1px solid #fecaca;padding:12px 18px;border-radius:12px;min-width:100px;">
+                                <div style="font-size:1.4rem;font-weight:800;color:#dc2626;">${ankiStats.again}</div>
+                                <div style="font-size:0.78rem;font-weight:700;color:#b91c1c;text-transform:uppercase;">🔴 Cần Ôn Lại</div>
+                            </div>
+                        </div>
+
+                        <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+                            <button class="practice-tab-btn active" style="display:inline-flex;" onclick="restartAnkiDeck()">
+                                🔄 Luyện Tập Lại Toàn Bộ
+                            </button>
+                            <button class="practice-tab-btn" style="display:inline-flex;background:#f1f5f9;border:1px solid #cbd5e1;color:#334155;" onclick="switchPracticeTab('spelling')">
+                                ✍️ Chuyển Sang Gõ Chính Tả
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            if (!document.getElementById('flashcardFront')) {
+                cardEl.innerHTML = `
+                    <div class="card-top-bar">
+                        <div class="word-counter" id="ankiCounter"></div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="ankiProgressBar"></div>
+                        </div>
+                    </div>
+                    <div class="flashcard-front" id="flashcardFront" onclick="flipAnkiCard(true)" style="cursor:pointer;">
+                        <div class="flashcard-pos" id="ankiPosFront"></div>
+                        <div class="flashcard-audio-wrap">
+                            <button class="btn-speak-main" onclick="event.stopPropagation(); playCurrentAnkiAudio()">
+                                🔊 Nghe Phát Âm
+                            </button>
+                        </div>
+                        <div class="flashcard-prompt-sentence" id="ankiSentenceFront"></div>
+                        <button class="btn-flip-card" onclick="event.stopPropagation(); flipAnkiCard(true)">
+                            <span>🔄 Lật Thẻ Xem Đáp Án (Space)</span>
+                        </button>
+                    </div>
+                    <div class="flashcard-back" id="flashcardBack" style="display:none;">
+                        <div class="flashcard-word" id="ankiWordBack"></div>
+                        <div class="flashcard-ipa" id="ankiIpaBack"></div>
+                        <button class="btn-speak-inline-card" onclick="playCurrentAnkiAudio()">🔊 Nghe lại</button>
+                        <div class="flashcard-meaning" id="ankiMeaningBack"></div>
+                        <div class="flashcard-usage" id="ankiUsageBack"></div>
+                        <button class="btn-flip-back" onclick="flipAnkiCard(false)">🔄 Lật Lại Câu Hỏi</button>
+                        <div class="flashcard-ratings">
+                            <button class="rating-btn red" onclick="rateAnkiCard(1)">🔴 Chưa Nhớ (1)</button>
+                            <button class="rating-btn yellow" onclick="rateAnkiCard(2)">🟡 Tạm Nhớ (2)</button>
+                            <button class="rating-btn green" onclick="rateAnkiCard(3)">🟢 Đã Thuộc (3)</button>
+                        </div>
+                    </div>
+                    <div class="spelling-nav-bar" style="margin-top: 18px;">
+                        <button class="practice-nav-btn" onclick="prevAnkiCard()">
+                            <span>&larr;</span> <span>Thẻ Trước</span>
+                        </button>
+                        <button class="practice-nav-btn" onclick="nextAnkiCard()">
+                            <span>Thẻ Kế Tiếp</span> <span>&rarr;</span>
+                        </button>
+                    </div>
+                `;
+            }
+
+            if (ankiIndex < 0) ankiIndex = 0;
             const curWord = words[ankiIndex];
-            
             const counterEl = document.getElementById('ankiCounter');
             const progressEl = document.getElementById('ankiProgressBar');
             if (counterEl) counterEl.textContent = `Thẻ ${ankiIndex + 1} / ${words.length}`;
@@ -3469,16 +3770,30 @@
         }
 
         function rateAnkiCard(level) {
+            const words = getPracticeWords();
+            const curWord = words[ankiIndex];
+            if (curWord) {
+                curWord.ankiRating = level;
+                curWord.ankiReviews = (curWord.ankiReviews || 0) + 1;
+                if (level === 1) ankiStats.again++;
+                else if (level === 2) ankiStats.good++;
+                else if (level === 3) ankiStats.easy++;
+            }
             nextAnkiCard();
         }
 
         function prevAnkiCard() {
-            ankiIndex--;
+            if (ankiIndex > 0) {
+                ankiIndex--;
+            }
             renderAnkiCard();
         }
 
         function nextAnkiCard() {
-            ankiIndex++;
+            const words = getPracticeWords();
+            if (ankiIndex < words.length) {
+                ankiIndex++;
+            }
             renderAnkiCard();
         }
 
@@ -3487,18 +3802,18 @@
             const fb = document.getElementById('panelSpellFeedback');
             if (!input || !fb) return;
             
+            const expected = (targetWord || (currentActiveSideWord && currentActiveSideWord.word) || '').trim().toLowerCase();
             const val = input.value.trim().toLowerCase();
-            const correct = targetWord.trim().toLowerCase();
             
             fb.style.display = 'block';
-            if (val === correct) {
+            if (val === expected) {
                 fb.className = 'mini-spell-feedback success';
                 fb.innerHTML = '🎉 Chính xác! Bạn đã ghi nhớ chuẩn mặt chữ.';
                 input.style.borderColor = '#10b981';
-                speakText(targetWord);
+                speakText(expected);
             } else {
                 fb.className = 'mini-spell-feedback error';
-                fb.innerHTML = `❌ Chưa đúng. Đáp án: <strong>${targetWord}</strong>. Hãy thử gõ lại!`;
+                fb.innerHTML = `❌ Chưa đúng. Đáp án: <strong>${expected}</strong>. Hãy thử gõ lại!`;
                 input.style.borderColor = '#ef4444';
                 input.focus();
             }
@@ -3548,17 +3863,86 @@
             }
         });
 
-        // Close on ESC
+        // Close on ESC & Anki Keyboard Navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeSidePanel();
                 hideQuickLookup();
+                return;
+            }
+
+            // Anki card keyboard navigation when anki tab is active and focus not in a visible input
+            const activeTag = document.activeElement ? document.activeElement.tagName : '';
+            const isTypingInVisibleInput = (activeTag === 'INPUT' || activeTag === 'TEXTAREA') && document.activeElement.offsetParent !== null;
+            if (currentPracticeTab === 'anki' && !isTypingInVisibleInput) {
+                const front = document.getElementById('flashcardFront');
+                const back = document.getElementById('flashcardBack');
+                const isBackVisible = back && back.style.display !== 'none';
+
+                if (e.code === 'Space' || e.key === ' ' || e.key === 'Spacebar') {
+                    e.preventDefault();
+                    flipAnkiCard(!isBackVisible);
+                } else if (e.key === '1') {
+                    e.preventDefault();
+                    rateAnkiCard(1);
+                } else if (e.key === '2') {
+                    e.preventDefault();
+                    rateAnkiCard(2);
+                } else if (e.key === '3') {
+                    e.preventDefault();
+                    rateAnkiCard(3);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextAnkiCard();
+                } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevAnkiCard();
+                }
             }
         });
 
-        // Init practice card
+        function initScrollSpy() {
+            const navPills = document.querySelectorAll('.nav-pills .nav-pill');
+            if (!navPills.length) return;
+
+            const sections = [];
+            navPills.forEach(pill => {
+                const targetId = pill.getAttribute('data-target');
+                if (targetId) {
+                    const el = document.getElementById(targetId) || document.getElementById('section_' + targetId);
+                    if (el) sections.push({ pill, el });
+                }
+            });
+
+            function onScroll() {
+                const scrollY = window.scrollY || window.pageYOffset;
+                const triggerPos = scrollY + 160;
+
+                let activeFound = false;
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const { pill, el } = sections[i];
+                    const top = el.offsetTop;
+                    if (triggerPos >= top) {
+                        navPills.forEach(p => p.classList.remove('active'));
+                        pill.classList.add('active');
+                        activeFound = true;
+                        break;
+                    }
+                }
+                if (!activeFound && sections.length > 0) {
+                    navPills.forEach(p => p.classList.remove('active'));
+                    sections[0].pill.classList.add('active');
+                }
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            onScroll();
+        }
+
+        // Init practice card and scroll spy
         setTimeout(() => {
             renderSpellingCard();
+            initScrollSpy();
         }, 100);
 
         // Office.js Integration for Word Add-in
