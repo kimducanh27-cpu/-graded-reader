@@ -209,6 +209,620 @@
             box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
         }
 
+        .btn-toggle-mask {
+            padding: 7px 14px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: #ffffff;
+            font-size: 0.83rem;
+            font-weight: 700;
+            color: var(--text-main);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.18s ease;
+            box-shadow: var(--shadow-sm);
+            white-space: nowrap;
+        }
+
+        .btn-toggle-mask:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+        }
+
+        .btn-toggle-mask.active {
+            background: #0f172a;
+            color: #ffffff;
+            border-color: #0f172a;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+        }
+
+        /* Active Recall Masking */
+        #readerContent.mask-mode .vocab-token:not(.revealed) {
+            background: #e2e8f0 !important;
+            color: transparent !important;
+            border-bottom: 2px dashed #64748b !important;
+            position: relative;
+            user-select: none;
+            cursor: pointer;
+            min-width: 58px;
+            text-align: center;
+            box-shadow: none !important;
+        }
+
+        #readerContent.mask-mode .vocab-token:not(.revealed) .token-sound-icon {
+            display: none !important;
+        }
+
+        #readerContent.mask-mode .vocab-token:not(.revealed)::after {
+            content: "[ • • • • ]";
+            position: absolute;
+            inset: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #475569;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+
+        #readerContent.mask-mode .vocab-token.revealed {
+            background: #dcfce7 !important;
+            color: #166534 !important;
+            border-bottom: 2px solid #16a34a !important;
+            animation: popReveal 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes popReveal {
+            0% { transform: scale(0.92); opacity: 0.7; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Interactive Practice Section */
+        .practice-container {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 32px 36px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .practice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: 22px;
+            margin-bottom: 28px;
+        }
+
+        .practice-title-group {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .practice-badge {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            color: #1d4ed8;
+            background: #eff6ff;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            margin-bottom: 8px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .practice-header h2 {
+            font-size: 1.45rem;
+            color: var(--text-main);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .practice-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .practice-tabs-nav {
+            display: inline-flex;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: var(--radius-lg);
+            gap: 4px;
+        }
+
+        .practice-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: var(--radius-md);
+            border: none;
+            background: transparent;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.18s ease;
+        }
+
+        .practice-tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .practice-tab-btn.active {
+            background: #ffffff;
+            color: #1d4ed8;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .practice-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 28px 30px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .word-counter {
+            font-size: 0.84rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .progress-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+
+        /* Audio-to-Spelling Card Specifics (Strict Pure English Orthography) */
+        .spelling-prompt-area {
+            margin-bottom: 24px;
+        }
+
+        .spelling-audio-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .spelling-audio-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
+        }
+
+        .spelling-audio-btn:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 6px 18px rgba(29, 78, 216, 0.35);
+        }
+
+        .spelling-hint-tag {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #475569;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        .spelling-cloze-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-left: 4px solid #1d4ed8;
+            border-radius: var(--radius-md);
+            padding: 18px 22px;
+        }
+
+        .spelling-cloze-sentence {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.3rem;
+            line-height: 1.7;
+            color: #1e293b;
+        }
+
+        .cloze-blank {
+            display: inline-block;
+            color: #1d4ed8;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            padding: 0 4px;
+            border-bottom: 2px dashed #1d4ed8;
+        }
+
+        .spelling-input-area {
+            margin-bottom: 24px;
+        }
+
+        .spelling-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .spelling-input {
+            flex: 1;
+            padding: 14px 18px;
+            font-size: 1.05rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            border: 2px solid #cbd5e1;
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.18s ease;
+            background: #ffffff;
+            color: var(--text-main);
+        }
+
+        .spelling-input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+        }
+
+        .spelling-input.correct {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .spelling-input.incorrect {
+            border-color: #ef4444;
+            background: #fef2f2;
+            animation: shakeInput 0.35s ease;
+        }
+
+        @keyframes shakeInput {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .spelling-submit-btn {
+            padding: 14px 26px;
+            background: #1d4ed8;
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.18s ease;
+            box-shadow: 0 2px 8px rgba(29, 78, 216, 0.2);
+            white-space: nowrap;
+        }
+
+        .spelling-submit-btn:hover {
+            background: #1e40af;
+            transform: translateY(-1px);
+        }
+
+        .spelling-feedback {
+            margin-top: 14px;
+            padding: 14px 18px;
+            border-radius: var(--radius-md);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .spelling-feedback.success {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            font-weight: 700;
+        }
+
+        .spelling-feedback.error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+        }
+
+        .spelling-feedback.corrected {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1e40af;
+            font-weight: 700;
+        }
+
+        .spelling-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            border-top: 1px solid var(--border-subtle);
+            padding-top: 18px;
+        }
+
+        .practice-nav-btn {
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            background: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .practice-nav-btn:hover {
+            background: #f8fafc;
+            color: var(--text-main);
+            border-color: #cbd5e1;
+        }
+
+        .practice-nav-btn.secondary {
+            border-color: transparent;
+            background: #f1f5f9;
+        }
+
+        /* Flashcard Tab Styles */
+        .flashcard-front, .flashcard-back {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .flashcard-pos {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            background: #f1f5f9;
+            padding: 3px 10px;
+            border-radius: var(--radius-full);
+            margin-bottom: 14px;
+        }
+
+        .flashcard-audio-wrap {
+            margin-bottom: 18px;
+        }
+
+        .flashcard-prompt-sentence {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.35rem;
+            line-height: 1.6;
+            color: #1e293b;
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto 24px auto;
+        }
+
+        .btn-flip-card {
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-full);
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .btn-flip-card:hover {
+            transform: translateY(-1.5px);
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.3);
+        }
+
+        .flashcard-word {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1d4ed8;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .flashcard-ipa {
+            font-size: 1.05rem;
+            color: #64748b;
+            font-family: monospace;
+            margin-bottom: 8px;
+        }
+
+        .btn-speak-inline-card {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8;
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 16px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .flashcard-meaning {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .flashcard-usage {
+            font-size: 0.88rem;
+            color: #64748b;
+            margin-bottom: 24px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .flashcard-ratings {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        .rating-btn {
+            padding: 8px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid transparent;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .rating-btn.red {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fecaca;
+        }
+
+        .rating-btn.yellow {
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #fde68a;
+        }
+
+        .rating-btn.green {
+            background: #dcfce7;
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        .rating-btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(0.96);
+        }
+
+        /* Mini Spell in Side Panel */
+        .mini-spell-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: 8px;
+        }
+
+        .mini-spell-cloze {
+            font-family: 'Newsreader', Georgia, serif;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: #1e293b;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .mini-spell-hint {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .mini-spell-input-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mini-spell-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            outline: none;
+        }
+
+        .mini-spell-input:focus {
+            border-color: #2563eb;
+        }
+
+        .btn-mini-spell {
+            padding: 8px 14px;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.84rem;
+            font-weight: 700;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .mini-spell-feedback {
+            margin-top: 10px;
+            font-size: 0.84rem;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .mini-spell-feedback.success {
+            background: #ecfdf5;
+            color: #065f46;
+            border: 1px solid #a7f3d0;
+        }
+
+        .mini-spell-feedback.error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
         .speed-segmented {
             display: inline-flex;
             background: #f1f5f9;
@@ -1297,6 +1911,82 @@
                 font-size: 0.96em;
             }
 
+            .btn-toggle-mask {
+                padding: 5px 8px;
+                font-size: 0.76rem;
+            }
+
+            .practice-container {
+                padding: 20px 14px;
+                margin-top: 24px;
+                margin-bottom: 24px;
+                border-radius: var(--radius-lg);
+            }
+            
+            .practice-header {
+                flex-direction: column;
+                gap: 14px;
+                padding-bottom: 16px;
+                margin-bottom: 20px;
+            }
+            
+            .practice-header h2 {
+                font-size: 1.22rem;
+            }
+            
+            .practice-tabs-nav {
+                width: 100%;
+                display: flex;
+            }
+            
+            .practice-tab-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 8px 6px;
+                font-size: 0.78rem;
+            }
+            
+            .practice-card {
+                padding: 18px 14px;
+            }
+            
+            .spelling-audio-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            
+            .spelling-cloze-sentence {
+                font-size: 1.12rem;
+            }
+            
+            .spelling-input-wrapper {
+                flex-direction: column;
+            }
+            
+            .spelling-input {
+                font-size: 16px !important;
+                padding: 12px 14px;
+            }
+            
+            .spelling-submit-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 16px;
+                min-height: 44px;
+            }
+            
+            .spelling-nav-bar {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            
+            .practice-nav-btn {
+                flex: 1;
+                min-height: 40px;
+                justify-content: center;
+            }
+
             /* Mobile Bottom Sheet Drawer */
             .side-panel {
                 top: auto !important;
@@ -1429,6 +2119,11 @@
                     </div>
                 </div>
 
+                <button id="btnToggleMask" class="btn-toggle-mask" onclick="toggleMaskMode()" title="Che các từ trọng tâm để thử thách trí nhớ">
+                    <span class="mask-icon">🎯</span>
+                    <span class="mask-label">Thử Thách</span>
+                </button>
+
                 <button id="btnStop" class="btn-stop-audio" onclick="stopAudio()">
                     <span class="stop-dot"></span> Dừng đọc
                 </button>
@@ -1461,7 +2156,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_1_0">Every morning, Alex wakes up early at 6:30 AM. He goes to the kitchen to <span class="vocab-token" onclick="openSidePanel('brew')">brew<span class="token-sound-icon">🔊</span></span> his first cup of coffee.</p><p class="reading-para" id="p_A1_1_1">The sweet <span class="vocab-token" onclick="openSidePanel('aroma')">aroma<span class="token-sound-icon">🔊</span></span> of the hot drink fills the quiet room. It gives him an <span class="vocab-token" onclick="openSidePanel('invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> feeling before he starts his daily routine.</p>
+                <p class="reading-para" id="p_A1_1_0">Every morning, Alex wakes up early at 6:30 AM. He goes to the kitchen to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> his first cup of coffee.</p><p class="reading-para" id="p_A1_1_1">The sweet <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> of the hot drink fills the quiet room. It gives him an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> feeling before he starts his daily routine.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -1502,7 +2197,7 @@
             
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_2_0">Alex sits at the wooden table by the window with warm bread. He loves to <span class="vocab-token" onclick="openSidePanel('brew')">brew<span class="token-sound-icon">🔊</span></span> fresh coffee and smell the rich <span class="vocab-token" onclick="openSidePanel('aroma')">aroma<span class="token-sound-icon">🔊</span></span> in the air.</p><p class="reading-para" id="p_A1_2_1">His mother explains that people carefully <span class="vocab-token" onclick="openSidePanel('roast')">roast<span class="token-sound-icon">🔊</span></span> brown coffee beans before grinding them. Taking a slow sip gives Alex an <span class="vocab-token" onclick="openSidePanel('invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> boost of energy for school.</p>
+                <p class="reading-para" id="p_A1_2_0">Alex sits at the wooden table by the window with warm bread. He loves to <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> fresh coffee and smell the rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> in the air.</p><p class="reading-para" id="p_A1_2_1">His mother explains that people carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> brown coffee beans before grinding them. Taking a slow sip gives Alex an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> boost of energy for school.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -1548,7 +2243,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A1_3_0">On Sunday morning, Alex walks to the local market with his father. The cool morning breeze feels wonderful and <span class="vocab-token" onclick="openSidePanel('invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> on his face.</p><p class="reading-para" id="p_A1_3_1">They stop at a small stall where sellers <span class="vocab-token" onclick="openSidePanel('roast')">roast<span class="token-sound-icon">🔊</span></span> fresh coffee beans over a warm stove. Alex buys a small bag of dark beans so he can <span class="vocab-token" onclick="openSidePanel('brew')">brew<span class="token-sound-icon">🔊</span></span> coffee at home and enjoy its deep <span class="vocab-token" onclick="openSidePanel('aroma')">aroma<span class="token-sound-icon">🔊</span></span>.</p>
+                <p class="reading-para" id="p_A1_3_0">On Sunday morning, Alex walks to the local market with his father. The cool morning breeze feels wonderful and <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> on his face.</p><p class="reading-para" id="p_A1_3_1">They stop at a small stall where sellers <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> fresh coffee beans over a warm stove. Alex buys a small bag of dark beans so he can <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> coffee at home and enjoy its deep <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span>.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -1594,7 +2289,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_A2_0">On Saturday mornings, Alex often visits a local coffee shop in town. The baristas there choose to <span class="vocab-token" onclick="openSidePanel('roast')">roast<span class="token-sound-icon">🔊</span></span> small batches of fresh coffee beans every week because it keeps the flavor fresh.</p><p class="reading-para" id="p_A2_1">Customers love to watch them <span class="vocab-token" onclick="openSidePanel('brew')">brew<span class="token-sound-icon">🔊</span></span> specialty drinks by hand. The rich <span class="vocab-token" onclick="openSidePanel('aroma')">aroma<span class="token-sound-icon">🔊</span></span> floating around the wooden tables creates a wonderfully <span class="vocab-token" onclick="openSidePanel('invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> atmosphere for everyone working on their laptops.</p>
+                <p class="reading-para" id="p_A2_0">On Saturday mornings, Alex often visits a local coffee shop in town. The baristas there choose to <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> small batches of fresh coffee beans every week because it keeps the flavor fresh.</p><p class="reading-para" id="p_A2_1">Customers love to watch them <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> specialty drinks by hand. The rich <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> floating around the wooden tables creates a wonderfully <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> atmosphere for everyone working on their laptops.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -1640,7 +2335,7 @@
         </div>
 
             <div class="reading-body">
-                <p class="reading-para" id="p_B1_0">Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship. Specialists must carefully <span class="vocab-token" onclick="openSidePanel('roast')">roast<span class="token-sound-icon">🔊</span></span> green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.</p><p class="reading-para" id="p_B1_1">When baristas <span class="vocab-token" onclick="openSidePanel('brew')">brew<span class="token-sound-icon">🔊</span></span> the extracted grounds with filtered water, the captivating <span class="vocab-token" onclick="openSidePanel('aroma')">aroma<span class="token-sound-icon">🔊</span></span> is immediately released into the air. This sensory experience provides an <span class="vocab-token" onclick="openSidePanel('invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> psychological sensation that stimulates productivity and creativity across cultures worldwide.</p>
+                <p class="reading-para" id="p_B1_0">Behind every great cup of coffee lies a delicate scientific process that balances chemistry and craftsmanship. Specialists must carefully <span class="vocab-token" data-word="roast" onclick="handleTokenClick(event, 'roast')">roast<span class="token-sound-icon">🔊</span></span> green coffee beans at precise temperatures, transforming natural sugars into complex flavor compounds.</p><p class="reading-para" id="p_B1_1">When baristas <span class="vocab-token" data-word="brew" onclick="handleTokenClick(event, 'brew')">brew<span class="token-sound-icon">🔊</span></span> the extracted grounds with filtered water, the captivating <span class="vocab-token" data-word="aroma" onclick="handleTokenClick(event, 'aroma')">aroma<span class="token-sound-icon">🔊</span></span> is immediately released into the air. This sensory experience provides an <span class="vocab-token" data-word="invigorating" onclick="handleTokenClick(event, 'invigorating')">invigorating<span class="token-sound-icon">🔊</span></span> psychological sensation that stimulates productivity and creativity across cultures worldwide.</p>
             </div>
 
             <div class="collapsible-card clues-card">
@@ -1665,6 +2360,132 @@
         </section>
         
         </main>
+
+        <!-- Interactive Practice & Spelling Section -->
+        <section class="practice-container" id="practiceContainer">
+            <div class="practice-header">
+                <div class="practice-title-group">
+                    <span class="practice-badge">🚀 LUYỆN TẬP TƯƠNG TÁC</span>
+                    <h2>Ghi Nhớ & Kiểm Tra Mặt Chữ</h2>
+                    <p class="practice-desc">Rèn luyện phản xạ nghe - gõ chính tả (Audio-to-Spelling) và kiểm tra spaced-repetition để khắc sâu mặt chữ.</p>
+                </div>
+                
+                <div class="practice-tabs-nav">
+                    <button id="tabBtnSpelling" class="practice-tab-btn active" onclick="switchPracticeTab('spelling')">
+                        <span>✍️</span> <span>Gõ Chính Tả Âm Thanh</span>
+                    </button>
+                    <button id="tabBtnAnki" class="practice-tab-btn" onclick="switchPracticeTab('anki')">
+                        <span>🎴</span> <span>Flashcard Lật Thẻ</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB 1: GÕ CHÍNH TẢ ÂM THANH (STRICT NO VIETNAMESE MEANING) -->
+            <div id="tabContentSpelling" class="practice-tab-panel active">
+                <div class="practice-card spelling-card">
+                    <div class="card-top-bar">
+                        <div class="word-counter" id="spellingCounter">Từ 1 / 4</div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="spellingProgressBar" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="spelling-prompt-area">
+                        <div class="spelling-audio-row">
+                            <button class="spelling-audio-btn" id="btnPlaySpellingAudio" onclick="playCurrentSpellingAudio()" title="Bấm để nghe phát âm tiếng Anh">
+                                <span class="audio-icon">🔊</span>
+                                <span>Nghe Phát Âm</span>
+                            </button>
+                            <span class="spelling-hint-tag" id="spellingHintTag">[noun] • 5 chữ cái</span>
+                        </div>
+
+                        <div class="spelling-cloze-box">
+                            <p class="spelling-cloze-sentence" id="spellingClozeSentence">
+                                The warm <span class="cloze-blank">______</span> of fresh coffee filled the entire room.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="spelling-input-area">
+                        <form id="spellingForm" onsubmit="handleSpellingSubmit(event)">
+                            <div class="spelling-input-wrapper">
+                                <input type="text" id="spellingInput" class="spelling-input" placeholder="Gõ từ tiếng Anh bạn nghe được..." autocomplete="off" autocapitalize="off" spellcheck="false" required>
+                                <button type="submit" class="spelling-submit-btn" id="btnCheckSpelling">
+                                    <span>Kiểm Tra</span>
+                                    <span class="submit-arrow">&rarr;</span>
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div id="spellingFeedback" class="spelling-feedback" style="display:none;"></div>
+                    </div>
+
+                    <div class="spelling-nav-bar">
+                        <button class="practice-nav-btn" onclick="prevSpellingWord()">
+                            <span>&larr;</span> <span>Từ Trước</span>
+                        </button>
+                        <button class="practice-nav-btn secondary" onclick="skipSpellingWord()">
+                            <span>Bỏ Qua</span>
+                        </button>
+                        <button class="practice-nav-btn" onclick="nextSpellingWord()">
+                            <span>Từ Kế Tiếp</span> <span>&rarr;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 2: FLASHCARD LẬT THẺ (ANKI) -->
+            <div id="tabContentAnki" class="practice-tab-panel" style="display:none;">
+                <div class="practice-card anki-flashcard" id="ankiCard">
+                    <div class="card-top-bar">
+                        <div class="word-counter" id="ankiCounter">Thẻ 1 / 4</div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" id="ankiProgressBar" style="width: 25%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Front Side -->
+                    <div class="flashcard-front" id="flashcardFront">
+                        <div class="flashcard-pos" id="ankiPosFront">[noun]</div>
+                        <div class="flashcard-audio-wrap">
+                            <button class="btn-speak-main" onclick="playCurrentAnkiAudio()">
+                                🔊 Nghe Phát Âm
+                            </button>
+                        </div>
+                        <div class="flashcard-prompt-sentence" id="ankiSentenceFront">
+                            "The warm ______ of fresh coffee filled the entire room."
+                        </div>
+                        <button class="btn-flip-card" onclick="flipAnkiCard(true)">
+                            <span>🔄 Lật Thẻ Xem Đáp Án</span>
+                        </button>
+                    </div>
+
+                    <!-- Back Side -->
+                    <div class="flashcard-back" id="flashcardBack" style="display:none;">
+                        <div class="flashcard-word" id="ankiWordBack">aroma</div>
+                        <div class="flashcard-ipa" id="ankiIpaBack">/əˈrəʊmə/</div>
+                        <button class="btn-speak-inline-card" onclick="playCurrentAnkiAudio()">🔊 Nghe lại</button>
+                        <div class="flashcard-meaning" id="ankiMeaningBack">hương thơm dịu, mùi thơm đặc trưng</div>
+                        <div class="flashcard-usage" id="ankiUsageBack">Thường dùng với cà phê, bánh mì mới nướng.</div>
+
+                        <div class="flashcard-ratings">
+                            <button class="rating-btn red" onclick="rateAnkiCard(1)">🔴 Chưa Nhớ</button>
+                            <button class="rating-btn yellow" onclick="rateAnkiCard(2)">🟡 Tạm Nhớ</button>
+                            <button class="rating-btn green" onclick="rateAnkiCard(3)">🟢 Đã Thuộc</button>
+                        </div>
+                    </div>
+
+                    <div class="spelling-nav-bar" style="margin-top: 18px;">
+                        <button class="practice-nav-btn" onclick="prevAnkiCard()">
+                            <span>&larr;</span> <span>Thẻ Trước</span>
+                        </button>
+                        <button class="practice-nav-btn" onclick="nextAnkiCard()">
+                            <span>Thẻ Kế Tiếp</span> <span>&rarr;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Floating Quick-Lookup Popup -->
@@ -1900,6 +2721,19 @@
                         <div class="anki-front">"${wordObj.cloze_anki_front || ''}"</div>
                         <button class="btn-reveal" onclick="revealAnswer(this)">👁️ Xem đáp án</button>
                         <div class="anki-back">${wordObj.cloze_anki_back || ''}</div>
+                    </div>
+                </div>
+
+                <div class="detail-section mini-spell-section">
+                    <div class="detail-label">✍️ Thử Thách Gõ Lại Mặt Chữ</div>
+                    <div class="mini-spell-card">
+                        <div class="mini-spell-cloze">"${wordObj.cloze_anki_front || ('Complete: ' + wordObj.word)}"</div>
+                        <div class="mini-spell-hint">${wordObj.pos ? '[' + wordObj.pos + '] • ' : ''}${cleanKey.length} chữ cái</div>
+                        <div class="mini-spell-input-group">
+                            <input type="text" id="panelSpellInput" class="mini-spell-input" placeholder="Gõ từ tiếng Anh..." autocomplete="off" autocapitalize="off" spellcheck="false" onkeydown="if(event.key==='Enter') checkPanelSpelling('${cleanKey}')">
+                            <button class="btn-mini-spell" onclick="checkPanelSpelling('${cleanKey}')">Kiểm Tra</button>
+                        </div>
+                        <div id="panelSpellFeedback" class="mini-spell-feedback" style="display:none;"></div>
                     </div>
                 </div>
 
@@ -2197,10 +3031,280 @@
 
             // Highlight word yellow in reading body
             highlightSavedWordInDocument(word);
+            if (typeof renderSpellingCard === 'function') renderSpellingCard();
+            if (typeof renderAnkiCard === 'function') renderAnkiCard();
 
             // Hide quick popup and open Side Panel with full details
             hideQuickLookup();
             openSidePanel(word);
+        }
+
+        
+        // ==========================================
+        // ACTIVE RECALL MASKING MODE
+        // ==========================================
+        let isMaskModeActive = false;
+
+        function toggleMaskMode() {
+            isMaskModeActive = !isMaskModeActive;
+            const reader = document.getElementById('readerContent');
+            const btn = document.getElementById('btnToggleMask');
+            
+            if (isMaskModeActive) {
+                reader.classList.add('mask-mode');
+                btn.classList.add('active');
+                btn.querySelector('.mask-label').textContent = 'Hiện Lại Từ';
+            } else {
+                reader.classList.remove('mask-mode');
+                btn.classList.remove('active');
+                btn.querySelector('.mask-label').textContent = 'Thử Thách';
+                document.querySelectorAll('.vocab-token.revealed').forEach(t => t.classList.remove('revealed'));
+            }
+        }
+
+        function handleTokenClick(e, wordKey) {
+            const token = e.currentTarget;
+            if (isMaskModeActive) {
+                if (!token.classList.contains('revealed')) {
+                    token.classList.add('revealed');
+                    speakText(wordKey);
+                    return;
+                }
+            }
+            openSidePanel(wordKey);
+        }
+
+        // ==========================================
+        // PRACTICE SECTION & SPELLING RECALL
+        // ==========================================
+        let currentPracticeTab = 'spelling';
+        let spellingIndex = 0;
+        let ankiIndex = 0;
+        let isSpellingWaitingRetype = false;
+
+        function getPracticeWords() {
+            return VOCAB_DATA && VOCAB_DATA.length > 0 ? VOCAB_DATA : [];
+        }
+
+        function switchPracticeTab(tab) {
+            currentPracticeTab = tab;
+            const btnSpelling = document.getElementById('tabBtnSpelling');
+            const btnAnki = document.getElementById('tabBtnAnki');
+            const panelSpelling = document.getElementById('tabContentSpelling');
+            const panelAnki = document.getElementById('tabContentAnki');
+            
+            if (tab === 'spelling') {
+                btnSpelling.classList.add('active');
+                btnAnki.classList.remove('active');
+                panelSpelling.style.display = 'block';
+                panelAnki.style.display = 'none';
+                renderSpellingCard();
+            } else {
+                btnSpelling.classList.remove('active');
+                btnAnki.classList.add('active');
+                panelSpelling.style.display = 'none';
+                panelAnki.style.display = 'block';
+                renderAnkiCard();
+            }
+        }
+
+        function getClozeSentenceForWord(wObj) {
+            if (wObj.cloze_anki_front && wObj.cloze_anki_front.includes('______')) {
+                return wObj.cloze_anki_front;
+            }
+            const sample = wObj.example_a1 || wObj.example_a2 || '';
+            if (sample) {
+                const escaped = wObj.word.replace(/[.*+?^${}()|[\]\]/g, '\$&');
+                const r = new RegExp(`\b${escaped}\b`, 'gi');
+                if (r.test(sample)) {
+                    return sample.replace(r, '______');
+                }
+            }
+            return `Practice sentence with ______ (${wObj.word.length} letters).`;
+        }
+
+        function renderSpellingCard() {
+            const words = getPracticeWords();
+            if (words.length === 0) return;
+            if (spellingIndex >= words.length) spellingIndex = 0;
+            if (spellingIndex < 0) spellingIndex = words.length - 1;
+            
+            const curWord = words[spellingIndex];
+            isSpellingWaitingRetype = false;
+            
+            const counterEl = document.getElementById('spellingCounter');
+            const progressEl = document.getElementById('spellingProgressBar');
+            if (counterEl) counterEl.textContent = `Từ ${spellingIndex + 1} / ${words.length}`;
+            if (progressEl) progressEl.style.width = `${((spellingIndex + 1) / words.length) * 100}%`;
+            
+            const hintEl = document.getElementById('spellingHintTag');
+            if (hintEl) {
+                const posText = curWord.pos ? `[${curWord.pos}] • ` : '';
+                hintEl.textContent = `${posText}${curWord.word.length} chữ cái`;
+            }
+            
+            const clozeEl = document.getElementById('spellingClozeSentence');
+            if (clozeEl) {
+                const sentence = getClozeSentenceForWord(curWord);
+                clozeEl.innerHTML = sentence.replace(/______/g, '<span class="cloze-blank">______</span>');
+            }
+            
+            const inputEl = document.getElementById('spellingInput');
+            const fbEl = document.getElementById('spellingFeedback');
+            if (inputEl) {
+                inputEl.value = '';
+                inputEl.className = 'spelling-input';
+                inputEl.placeholder = 'Gõ từ tiếng Anh bạn nghe được...';
+            }
+            if (fbEl) {
+                fbEl.style.display = 'none';
+                fbEl.innerHTML = '';
+            }
+        }
+
+        function playCurrentSpellingAudio() {
+            const words = getPracticeWords();
+            if (words[spellingIndex]) {
+                speakText(words[spellingIndex].word);
+            }
+        }
+
+        function handleSpellingSubmit(e) {
+            if (e) e.preventDefault();
+            const words = getPracticeWords();
+            const curWord = words[spellingIndex];
+            if (!curWord) return;
+            
+            const inputEl = document.getElementById('spellingInput');
+            const fbEl = document.getElementById('spellingFeedback');
+            if (!inputEl || !fbEl) return;
+            
+            const userVal = inputEl.value.trim().toLowerCase();
+            const targetVal = curWord.word.trim().toLowerCase();
+            
+            fbEl.style.display = 'block';
+            
+            if (userVal === targetVal) {
+                inputEl.className = 'spelling-input correct';
+                if (isSpellingWaitingRetype) {
+                    fbEl.className = 'spelling-feedback corrected';
+                    fbEl.innerHTML = `👍 Rất tốt! Bạn đã gõ lại chính xác từ <strong>${curWord.word}</strong>. Đang chuyển từ kế tiếp...`;
+                } else {
+                    fbEl.className = 'spelling-feedback success';
+                    fbEl.innerHTML = `🎉 CHÍNH XÁC! Bạn đã nhớ đúng mặt chữ. Đang chuyển từ kế tiếp...`;
+                }
+                speakText(curWord.word);
+                setTimeout(() => {
+                    nextSpellingWord();
+                }, 1200);
+            } else {
+                isSpellingWaitingRetype = true;
+                inputEl.className = 'spelling-input incorrect';
+                fbEl.className = 'spelling-feedback error';
+                fbEl.innerHTML = `❌ Chưa chính xác. Đáp án đúng: <strong style="font-size:1.1em;text-decoration:underline;">${curWord.word}</strong>.<br><span style="font-size:0.86rem;margin-top:4px;display:inline-block;">👉 Hãy gõ lại từ <strong>${curWord.word}</strong> vào ô để ghi nhớ mặt chữ!</span>`;
+                inputEl.value = '';
+                inputEl.placeholder = `Gõ lại "${curWord.word}" vào đây...`;
+                inputEl.focus();
+            }
+        }
+
+        function prevSpellingWord() {
+            spellingIndex--;
+            renderSpellingCard();
+            playCurrentSpellingAudio();
+        }
+
+        function nextSpellingWord() {
+            spellingIndex++;
+            renderSpellingCard();
+            playCurrentSpellingAudio();
+        }
+
+        function skipSpellingWord() {
+            nextSpellingWord();
+        }
+
+        // ==========================================
+        // ANKI FLASHCARD COMPONENT
+        // ==========================================
+        function renderAnkiCard() {
+            const words = getPracticeWords();
+            if (words.length === 0) return;
+            if (ankiIndex >= words.length) ankiIndex = 0;
+            if (ankiIndex < 0) ankiIndex = words.length - 1;
+            
+            const curWord = words[ankiIndex];
+            
+            const counterEl = document.getElementById('ankiCounter');
+            const progressEl = document.getElementById('ankiProgressBar');
+            if (counterEl) counterEl.textContent = `Thẻ ${ankiIndex + 1} / ${words.length}`;
+            if (progressEl) progressEl.style.width = `${((ankiIndex + 1) / words.length) * 100}%`;
+            
+            document.getElementById('ankiPosFront').textContent = curWord.pos ? `[${curWord.pos}]` : '[VOCA]';
+            document.getElementById('ankiSentenceFront').textContent = `"${getClozeSentenceForWord(curWord)}"`;
+            
+            document.getElementById('ankiWordBack').textContent = curWord.word;
+            document.getElementById('ankiIpaBack').textContent = curWord.ipa || '';
+            document.getElementById('ankiMeaningBack').textContent = curWord.meaning_vn || '';
+            document.getElementById('ankiUsageBack').textContent = curWord.usage_note || '';
+            
+            flipAnkiCard(false);
+        }
+
+        function flipAnkiCard(showBack) {
+            const front = document.getElementById('flashcardFront');
+            const back = document.getElementById('flashcardBack');
+            if (showBack) {
+                front.style.display = 'none';
+                back.style.display = 'block';
+                playCurrentAnkiAudio();
+            } else {
+                front.style.display = 'block';
+                back.style.display = 'none';
+            }
+        }
+
+        function playCurrentAnkiAudio() {
+            const words = getPracticeWords();
+            if (words[ankiIndex]) {
+                speakText(words[ankiIndex].word);
+            }
+        }
+
+        function rateAnkiCard(level) {
+            nextAnkiCard();
+        }
+
+        function prevAnkiCard() {
+            ankiIndex--;
+            renderAnkiCard();
+        }
+
+        function nextAnkiCard() {
+            ankiIndex++;
+            renderAnkiCard();
+        }
+
+        function checkPanelSpelling(targetWord) {
+            const input = document.getElementById('panelSpellInput');
+            const fb = document.getElementById('panelSpellFeedback');
+            if (!input || !fb) return;
+            
+            const val = input.value.trim().toLowerCase();
+            const correct = targetWord.trim().toLowerCase();
+            
+            fb.style.display = 'block';
+            if (val === correct) {
+                fb.className = 'mini-spell-feedback success';
+                fb.innerHTML = '🎉 Chính xác! Bạn đã ghi nhớ chuẩn mặt chữ.';
+                input.style.borderColor = '#10b981';
+                speakText(targetWord);
+            } else {
+                fb.className = 'mini-spell-feedback error';
+                fb.innerHTML = `❌ Chưa đúng. Đáp án: <strong>${targetWord}</strong>. Hãy thử gõ lại!`;
+                input.style.borderColor = '#ef4444';
+                input.focus();
+            }
         }
 
         function highlightSavedWordInDocument(word) {
@@ -2217,7 +3321,7 @@
                         const val = node.nodeValue;
                         if (regex.test(val)) {
                             const span = document.createElement('span');
-                            span.innerHTML = val.replace(regex, '<span class="vocab-token user-saved" onclick="openSidePanel(\'' + word.toLowerCase().replace(/'/g, "\\'") + '\')">$1<span class="token-sound-icon">🔊</span></span>');
+                            span.innerHTML = val.replace(regex, '<span class="vocab-token user-saved" data-word="' + word.toLowerCase().replace(/'/g, "\'") + '" onclick="handleTokenClick(event, \'' + word.toLowerCase().replace(/'/g, "\\'") + '\')">$1<span class="token-sound-icon">🔊</span></span>');
                             node.parentNode.replaceChild(span, node);
                         }
                     } else if (node.nodeType === 1 && !node.classList.contains('vocab-token')) {
@@ -2246,6 +3350,11 @@
                 hideQuickLookup();
             }
         });
+
+        // Init practice card
+        setTimeout(() => {
+            renderSpellingCard();
+        }, 100);
 
         // Office.js Integration for Word Add-in
         let isInsideWordApp = false;
