@@ -241,19 +241,79 @@
 
         /* Active Recall Masking */
         #readerContent.mask-mode .vocab-token:not(.revealed) {
-            background: #e2e8f0 !important;
+            background: #cbd5e1 !important;
             color: transparent !important;
-            border-bottom: 2px dashed #64748b !important;
+            border-bottom: 2px dashed #475569 !important;
             position: relative;
             user-select: none;
             cursor: pointer;
             min-width: 58px;
             text-align: center;
             box-shadow: none !important;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #readerContent.mask-mode .vocab-token:not(.revealed) .token-sound-icon {
             display: none !important;
+        }
+
+        #readerContent.mask-mode .vocab-token:not(.revealed)::after {
+            content: '••••';
+            color: #475569;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .filter-chip {
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border);
+            background: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .filter-chip:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        .filter-chip.active {
+            background: #1d4ed8;
+            color: #ffffff;
+            border-color: #1d4ed8;
+            box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+        }
+
+        .btn-flip-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 8px 0 16px 0;
+            padding: 6px 14px;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .btn-flip-back:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
         }
 
         #readerContent.mask-mode .vocab-token:not(.revealed)::after {
@@ -1770,9 +1830,15 @@
             .level-nav {
                 display: flex;
                 width: 100%;
-                gap: 4px;
+                gap: 5px;
                 padding: 4px;
-                justify-content: space-between;
+                justify-content: flex-start;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            .level-nav::-webkit-scrollbar {
+                display: none;
             }
 
             .lvl-label-full { display: none !important; }
@@ -1916,7 +1982,7 @@
                 font-size: 0.76rem;
             }
 
-            .practice-container {
+            .practice-container, .practice-section {
                 padding: 20px 14px;
                 margin-top: 24px;
                 margin-bottom: 24px;
@@ -1934,16 +2000,17 @@
                 font-size: 1.22rem;
             }
             
-            .practice-tabs-nav {
+            .practice-tabs-nav, .practice-tab-nav {
                 width: 100%;
                 display: flex;
+                gap: 6px;
             }
             
-            .practice-tab-btn {
+            .practice-tab-btn, .tab-nav-btn {
                 flex: 1;
                 justify-content: center;
-                padding: 8px 6px;
-                font-size: 0.78rem;
+                padding: 10px 8px;
+                font-size: 0.8rem;
             }
             
             .practice-card {
@@ -2368,6 +2435,11 @@
                     <span class="practice-badge">🚀 LUYỆN TẬP TƯƠNG TÁC</span>
                     <h2>Ghi Nhớ & Kiểm Tra Mặt Chữ</h2>
                     <p class="practice-desc">Rèn luyện phản xạ nghe - gõ chính tả (Audio-to-Spelling) và kiểm tra spaced-repetition để khắc sâu mặt chữ.</p>
+                    <div class="practice-filters" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
+                        <button class="filter-chip active" id="chipTarget" onclick="setPracticeFilter('target')">🎯 Từ Trọng Tâm</button>
+                        <button class="filter-chip" id="chipAll" onclick="setPracticeFilter('all')">📚 Toàn Bộ Bài Đọc</button>
+                        <button class="filter-chip" id="chipSaved" onclick="setPracticeFilter('saved')">⭐ Từ Đã Lưu (<span id="savedCount">0</span>)</button>
+                    </div>
                 </div>
                 
                 <div class="practice-tabs-nav">
@@ -2395,6 +2467,10 @@
                             <button class="spelling-audio-btn" id="btnPlaySpellingAudio" onclick="playCurrentSpellingAudio()" title="Bấm để nghe phát âm tiếng Anh">
                                 <span class="audio-icon">🔊</span>
                                 <span>Nghe Phát Âm</span>
+                            </button>
+                            <button class="spelling-audio-btn sentence-audio" id="btnPlaySentenceAudio" onclick="playCurrentSentenceAudio()" title="Nghe toàn bộ câu ngữ cảnh hoàn chỉnh" style="background:#f1f5f9;border:1px solid #cbd5e1;color:#334155;">
+                                <span class="audio-icon">🎧</span>
+                                <span>Nghe Cả Câu</span>
                             </button>
                             <span class="spelling-hint-tag" id="spellingHintTag">[noun] • 5 chữ cái</span>
                         </div>
@@ -2445,17 +2521,17 @@
                     </div>
 
                     <!-- Front Side -->
-                    <div class="flashcard-front" id="flashcardFront">
+                    <div class="flashcard-front" id="flashcardFront" onclick="flipAnkiCard(true)" style="cursor:pointer;">
                         <div class="flashcard-pos" id="ankiPosFront">[noun]</div>
                         <div class="flashcard-audio-wrap">
-                            <button class="btn-speak-main" onclick="playCurrentAnkiAudio()">
+                            <button class="btn-speak-main" onclick="event.stopPropagation(); playCurrentAnkiAudio()">
                                 🔊 Nghe Phát Âm
                             </button>
                         </div>
                         <div class="flashcard-prompt-sentence" id="ankiSentenceFront">
                             "The warm ______ of fresh coffee filled the entire room."
                         </div>
-                        <button class="btn-flip-card" onclick="flipAnkiCard(true)">
+                        <button class="btn-flip-card" onclick="event.stopPropagation(); flipAnkiCard(true)">
                             <span>🔄 Lật Thẻ Xem Đáp Án</span>
                         </button>
                     </div>
@@ -2467,6 +2543,7 @@
                         <button class="btn-speak-inline-card" onclick="playCurrentAnkiAudio()">🔊 Nghe lại</button>
                         <div class="flashcard-meaning" id="ankiMeaningBack">hương thơm dịu, mùi thơm đặc trưng</div>
                         <div class="flashcard-usage" id="ankiUsageBack">Thường dùng với cà phê, bánh mì mới nướng.</div>
+                        <button class="btn-flip-back" onclick="flipAnkiCard(false)">🔄 Lật Lại Câu Hỏi</button>
 
                         <div class="flashcard-ratings">
                             <button class="rating-btn red" onclick="rateAnkiCard(1)">🔴 Chưa Nhớ</button>
@@ -2588,7 +2665,7 @@
         }
 
         function scrollToLevel(lvl) {
-            const el = document.getElementById('section_' + lvl);
+            const el = document.getElementById(lvl) || document.getElementById('section_' + lvl);
             if (el) {
                 el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
@@ -2601,21 +2678,37 @@
             }
             window.speechSynthesis.cancel();
 
-            const utter = new SpeechSynthesisUtterance(text);
-            utter.rate = currentRate;
-            if (selectedVoice) utter.voice = selectedVoice;
-
             const stopBtn = document.getElementById('btnStop');
-            stopBtn.style.display = 'inline-flex';
+            if (stopBtn) stopBtn.style.display = 'inline-flex';
 
-            utter.onend = () => {
-                stopBtn.style.display = 'none';
-            };
-            utter.onerror = () => {
-                stopBtn.style.display = 'none';
-            };
+            // Split utterances longer than 200 chars by sentence for speech synthesis stability
+            const utterances = [];
+            if (text && text.length > 200) {
+                const sentences = text.match(/[^.!?]+[.!?]+(\s+|$)|[^.!?]+$/g) || [text];
+                sentences.forEach(s => {
+                    const cleanS = s.trim();
+                    if (cleanS) {
+                        const u = new SpeechSynthesisUtterance(cleanS);
+                        u.rate = currentRate;
+                        if (selectedVoice) { try { u.voice = selectedVoice; } catch (e) {} }
+                        utterances.push(u);
+                    }
+                });
+            } else if (text) {
+                const u = new SpeechSynthesisUtterance(text);
+                u.rate = currentRate;
+                if (selectedVoice) { try { u.voice = selectedVoice; } catch (e) {} }
+                utterances.push(u);
+            }
 
-            window.speechSynthesis.speak(utter);
+            if (utterances.length > 0) {
+                const last = utterances[utterances.length - 1];
+                last.onend = () => { if (stopBtn) stopBtn.style.display = 'none'; };
+                last.onerror = () => { if (stopBtn) stopBtn.style.display = 'none'; };
+                utterances.forEach(u => window.speechSynthesis.speak(u));
+            } else {
+                if (stopBtn) stopBtn.style.display = 'none';
+            }
         }
 
         function stopAudio() {
@@ -2641,12 +2734,23 @@
                 let pos = 'Từ tra cứu';
                 let usage = 'Tra cứu trực tiếp từ văn bản.';
 
+                let exA1 = `I am reading the word "${wordKey}".`;
+                let exA2 = `You can use "${wordKey}" in your everyday conversations.`;
+                let exB1 = `Expanding your knowledge with "${wordKey}" improves fluency.`;
+                let clozeFront = `Review: Meaning of ${wordKey}?`;
+                let clozeBack = `${wordKey}: ${meaning}`;
+
                 if (typeof PASSAGE_GLOSSARY !== 'undefined' && PASSAGE_GLOSSARY[cleanKey]) {
                     const g = PASSAGE_GLOSSARY[cleanKey];
                     meaning = g.meaning_vn || '';
                     ipa = g.ipa || '';
                     pos = g.pos || pos;
                     usage = g.usage_note || usage;
+                    if (g.example_a1) exA1 = g.example_a1;
+                    if (g.example_a2) exA2 = g.example_a2;
+                    if (g.example_a3_b1) exB1 = g.example_a3_b1;
+                    if (g.cloze_anki_front) clozeFront = g.cloze_anki_front;
+                    if (g.cloze_anki_back) clozeBack = g.cloze_anki_back;
                 } else {
                     try {
                         const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=vi&dt=t&q=${encodeURIComponent(cleanKey)}`);
@@ -2657,6 +2761,7 @@
                     } catch (e) {
                         meaning = 'Bấm liên kết bên dưới để xem từ điển chi tiết.';
                     }
+                    clozeBack = `${wordKey}: ${meaning}`;
                 }
 
                 wordObj = {
@@ -2665,11 +2770,11 @@
                     pos: pos,
                     meaning_vn: meaning || cleanKey,
                     usage_note: usage,
-                    example_a1: `I am reading the word "${wordKey}".`,
-                    example_a2: `You can use "${wordKey}" in your everyday conversations.`,
-                    example_a3_b1: `Expanding your knowledge with "${wordKey}" improves fluency.`,
-                    cloze_anki_front: `Review: Meaning of ${wordKey}?`,
-                    cloze_anki_back: `${wordKey}: ${meaning}`
+                    example_a1: exA1,
+                    example_a2: exA2,
+                    example_a3_b1: exB1,
+                    cloze_anki_front: clozeFront,
+                    cloze_anki_back: clozeBack
                 };
                 VOCAB_DATA.push(wordObj);
             }
@@ -2770,7 +2875,7 @@
             if (!rawText) {
                 return;
             }
-            if (rawText.length < 2 || rawText.length > 250) {
+            if (rawText.length < 2 || rawText.length > 500) {
                 hideQuickLookup();
                 return;
             }
@@ -3011,25 +3116,46 @@
         function saveWordToPassage() {
             if (!currentSelectionWord) return;
             const word = currentSelectionWord;
+            const cleanKey = word.trim().toLowerCase();
 
-            let existing = VOCAB_DATA.find(w => w.word.toLowerCase() === word.toLowerCase());
+            let existing = VOCAB_DATA.find(w => w.word.toLowerCase() === cleanKey);
             if (!existing) {
+                let exA1 = `I learned the word "${word}" while reading today.`;
+                let exA2 = `Remember to use "${word}" in everyday communication.`;
+                let exB1 = `The word "${word}" expands vocabulary and enhances comprehension.`;
+                let clozeFront = `Practice: Complete the sentence with ______ (${word}).`;
+                let clozeBack = word + (currentSelectionIpa ? ' (' + currentSelectionIpa + ')' : '') + ' - ' + currentSelectionMeaning;
+
+                if (typeof PASSAGE_GLOSSARY !== 'undefined' && PASSAGE_GLOSSARY[cleanKey]) {
+                    const g = PASSAGE_GLOSSARY[cleanKey];
+                    if (g.example_a1) exA1 = g.example_a1;
+                    if (g.example_a2) exA2 = g.example_a2;
+                    if (g.example_a3_b1) exB1 = g.example_a3_b1;
+                    if (g.cloze_anki_front) clozeFront = g.cloze_anki_front;
+                    if (g.cloze_anki_back) clozeBack = g.cloze_anki_back;
+                }
+
                 existing = {
                     word: word,
                     ipa: currentSelectionIpa || '',
                     pos: currentSelectionPos || 'từ đã lưu',
                     meaning_vn: currentSelectionMeaning || '',
                     usage_note: `Từ vựng do bạn lưu lại khi đọc bài: "${word}".`,
-                    example_a1: `I learned the word "${word}" while reading today.`,
-                    example_a2: `Remember to use "${word}" in everyday communication.`,
-                    example_a3_b1: `The word "${word}" expands vocabulary and enhances comprehension.`,
-                    cloze_anki_front: `Practice: Complete the sentence with ______ (${word}).`,
-                    cloze_anki_back: word + (currentSelectionIpa ? ' (' + currentSelectionIpa + ')' : '') + ' - ' + currentSelectionMeaning
+                    example_a1: exA1,
+                    example_a2: exA2,
+                    example_a3_b1: exB1,
+                    cloze_anki_front: clozeFront,
+                    cloze_anki_back: clozeBack,
+                    isSaved: true
                 };
                 VOCAB_DATA.push(existing);
+            } else {
+                existing.isSaved = true;
             }
 
-            // Highlight word yellow in reading body
+            updateSavedCounter();
+
+            // Highlight word yellow in reading body safely without corrupting text
             highlightSavedWordInDocument(word);
             if (typeof renderSpellingCard === 'function') renderSpellingCard();
             if (typeof renderAnkiCard === 'function') renderAnkiCard();
@@ -3108,19 +3234,90 @@
             }
         }
 
+        let practiceFilter = 'target';
+
+        function escapeRegExp(s) {
+            return (s || '').split('').map(c => ('-[]/{}()*+?.' + String.fromCharCode(92) + '^$|').indexOf(c) !== -1 ? (String.fromCharCode(92) + c) : c).join('');
+        }
+
+        function getAllAvailableWords() {
+            const list = [...VOCAB_DATA];
+            if (typeof PASSAGE_GLOSSARY !== 'undefined') {
+                for (const [key, g] of Object.entries(PASSAGE_GLOSSARY)) {
+                    if (key.length >= 2 && !key.includes(' ') && !list.some(w => w.word.toLowerCase() === key.toLowerCase())) {
+                        list.push({
+                            word: key,
+                            ipa: g.ipa || '',
+                            pos: g.pos || 'từ vựng',
+                            meaning_vn: g.meaning_vn || '',
+                            usage_note: g.usage_note || '',
+                            example_a1: g.example_a1 || `Alex uses "${key}" in everyday English.`,
+                            example_a2: g.example_a2 || '',
+                            example_a3_b1: g.example_a3_b1 || '',
+                            cloze_anki_front: g.cloze_anki_front || `Review: Complete sentence with ______ (${key}).`,
+                            cloze_anki_back: `${key}${g.ipa ? ' (' + g.ipa + ')' : ''} - ${g.meaning_vn || ''}`
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
+        function getPracticeWords() {
+            if (practiceFilter === 'target') {
+                const targets = VOCAB_DATA.filter(w => !w.isSaved);
+                return targets.length > 0 ? targets.slice(0, 4) : VOCAB_DATA;
+            } else if (practiceFilter === 'saved') {
+                const saved = VOCAB_DATA.filter(w => w.isSaved);
+                return saved.length > 0 ? saved : VOCAB_DATA;
+            } else {
+                return getAllAvailableWords();
+            }
+        }
+
+        function setPracticeFilter(filter) {
+            practiceFilter = filter;
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            if (filter === 'target') document.getElementById('chipTarget')?.classList.add('active');
+            else if (filter === 'all') document.getElementById('chipAll')?.classList.add('active');
+            else if (filter === 'saved') document.getElementById('chipSaved')?.classList.add('active');
+            
+            spellingIndex = 0;
+            ankiIndex = 0;
+            if (currentPracticeTab === 'spelling') renderSpellingCard();
+            else renderAnkiCard();
+        }
+
+        function updateSavedCounter() {
+            const count = VOCAB_DATA.filter(w => w.isSaved).length;
+            const el = document.getElementById('savedCount');
+            if (el) el.textContent = count;
+        }
+
+        function playCurrentSentenceAudio() {
+            const words = getPracticeWords();
+            if (words[spellingIndex]) {
+                const cloze = getClozeSentenceForWord(words[spellingIndex]);
+                const fullSentence = cloze.replace(/______/g, words[spellingIndex].word);
+                speakText(fullSentence);
+            }
+        }
+
         function getClozeSentenceForWord(wObj) {
+            if (!wObj) return 'Practice sentence with ______';
             if (wObj.cloze_anki_front && wObj.cloze_anki_front.includes('______')) {
                 return wObj.cloze_anki_front;
             }
             const sample = wObj.example_a1 || wObj.example_a2 || '';
-            if (sample) {
-                const escaped = wObj.word.replace(/[.*+?^${}()|[\]\]/g, '\$&');
-                const r = new RegExp(`\b${escaped}\b`, 'gi');
+            if (sample && wObj.word) {
+                const escaped = escapeRegExp(wObj.word);
+                const wb = String.fromCharCode(92) + 'b';
+                const r = new RegExp(wb + escaped + wb, 'gi');
                 if (r.test(sample)) {
                     return sample.replace(r, '______');
                 }
             }
-            return `Practice sentence with ______ (${wObj.word.length} letters).`;
+            return `Practice sentence with ______ (${wObj.word ? wObj.word.length : 4} letters).`;
         }
 
         function renderSpellingCard() {
@@ -3309,8 +3506,12 @@
 
         function highlightSavedWordInDocument(word) {
             const paras = document.querySelectorAll('.reading-body .reading-para');
-            const escaped = word.trim().split('').map(c => ('-[]/{}()*+?.\\^$|'.indexOf(c) !== -1 ? '\\' + c : c)).join('');
-            const regex = new RegExp(escaped, 'gi');
+            const cleanWord = (word || '').trim();
+            if (!cleanWord) return;
+            const escaped = escapeRegExp(cleanWord);
+            const wb = String.fromCharCode(92) + 'b';
+            const regex = new RegExp(wb + escaped + wb, 'gi');
+            const safeWord = encodeURIComponent(cleanWord.toLowerCase());
 
             paras.forEach(para => {
                 const tempDiv = document.createElement('div');
@@ -3319,9 +3520,13 @@
                 function walkTextNodes(node) {
                     if (node.nodeType === 3) {
                         const val = node.nodeValue;
+                        regex.lastIndex = 0;
                         if (regex.test(val)) {
+                            regex.lastIndex = 0;
                             const span = document.createElement('span');
-                            span.innerHTML = val.replace(regex, '<span class="vocab-token user-saved" data-word="' + word.toLowerCase().replace(/'/g, "\'") + '" onclick="handleTokenClick(event, \'' + word.toLowerCase().replace(/'/g, "\\'") + '\')">$1<span class="token-sound-icon">🔊</span></span>');
+                            span.innerHTML = val.replace(regex, (match) => {
+                                return `<span class="vocab-token user-saved" data-word="${safeWord}" onclick="handleTokenClick(event, decodeURIComponent('${safeWord}'))">${match}<span class="token-sound-icon">🔊</span></span>`;
+                            });
                             node.parentNode.replaceChild(span, node);
                         }
                     } else if (node.nodeType === 1 && !node.classList.contains('vocab-token')) {
@@ -3388,7 +3593,7 @@
                         const rawText = asyncResult.value;
                         if (rawText && typeof rawText === 'string') {
                             const clean = rawText.trim().replace(/^[.,;:!?"'()\[\]\s]+|[.,;:!?"'()\[\]\s]+$/g, '');
-                            if (clean.length >= 2 && clean.length <= 40 && clean.indexOf(String.fromCharCode(10)) === -1 && clean !== lastWordSelected) {
+                            if (clean.length >= 2 && clean.length <= 120 && clean.indexOf(String.fromCharCode(10)) === -1 && clean !== lastWordSelected) {
                                 lastWordSelected = clean;
                                 openSidePanel(clean);
                                 speakText(clean);
