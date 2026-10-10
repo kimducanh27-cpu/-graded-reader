@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Interactive Reader - Friends_Weather_and_Life_Stories</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -191,10 +194,10 @@
             box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
         }
 
-        /* Floating Sticky Controls Toolbar */
+        /* Floating Sticky Controls Toolbar (Docks cleanly beneath Enterprise Navbar) */
         .controls-toolbar {
             position: sticky;
-            top: 14px;
+            top: 76px;
             z-index: 100;
             display: flex;
             align-items: center;
@@ -523,6 +526,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
         }
         .spelling-media-card img, .flashcard-media-card img {
             width: 100%;
@@ -532,6 +536,21 @@
         }
         .spelling-media-card img:hover, .flashcard-media-card img:hover {
             transform: scale(1.02);
+        }
+        .media-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.72);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 20px;
+            pointer-events: none;
+            letter-spacing: 0.02em;
         }
 
         /* Interactive Practice Section */
@@ -2040,10 +2059,10 @@
                 gap: 4px;
             }
 
-            /* Ultra-sleek Sticky Toolbar on Mobile */
+            /* Ultra-sleek Sticky Toolbar on Mobile (Docks beneath Enterprise Navbar) */
             .controls-toolbar {
                 position: sticky;
-                top: 6px;
+                top: 62px;
                 padding: 8px 10px;
                 border-radius: var(--radius-lg);
                 margin-bottom: 14px;
@@ -2695,6 +2714,7 @@
 
                     <div class="spelling-media-card" id="spellingMediaWrap">
                         <img id="spellingImage" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80" alt="Minh hoạ từ vựng" loading="lazy">
+                        <span class="media-badge">📷 Minh Hoạ Ngữ Cảnh</span>
                     </div>
 
                     <div class="spelling-prompt-area">
@@ -3700,6 +3720,7 @@
                         </div>
                         <div class="spelling-media-card" id="spellingMediaWrap">
                             <img id="spellingImage" src="" alt="Minh hoạ từ vựng" loading="lazy">
+                            <span class="media-badge">📷 Minh Hoạ Ngữ Cảnh</span>
                         </div>
                         <div class="spelling-prompt-area">
                             <div class="spelling-audio-row">
@@ -3936,6 +3957,7 @@
                     <div class="flashcard-front" id="flashcardFront" onclick="flipAnkiCard(true)" style="cursor:pointer;">
                         <div class="flashcard-media-card" id="ankiMediaWrap">
                             <img id="ankiImageFront" src="" alt="Minh hoạ từ vựng" loading="lazy">
+                            <span class="media-badge">📷 Minh Hoạ Ngữ Cảnh</span>
                         </div>
                         <div class="flashcard-pos" id="ankiPosFront"></div>
                         <div class="flashcard-audio-wrap">
