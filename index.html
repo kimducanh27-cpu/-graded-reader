@@ -401,6 +401,139 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
+        /* Enterprise Top Navbar */
+        .enterprise-navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 12px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+            position: sticky;
+            top: 10px;
+            z-index: 150;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-brand-badge {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .brand-title {
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: #0f172a;
+            letter-spacing: -0.02em;
+        }
+        .brand-sub {
+            font-size: 0.72rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+        .nav-mode-tabs {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 4px;
+            border-radius: 12px;
+            gap: 4px;
+        }
+        .nav-mode-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border: none;
+            background: transparent;
+            color: #475569;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 7px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .nav-mode-btn:hover {
+            color: #0f172a;
+        }
+        .nav-mode-btn.active {
+            background: #ffffff;
+            color: #1d4ed8;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        }
+        .nav-tab-badge {
+            background: #dbeafe;
+            color: #1e40af;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 20px;
+        }
+        .nav-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: none;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+            transition: all 0.2s ease;
+        }
+        .nav-cta-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        /* Web Illustration Media Cards */
+        .spelling-media-card, .flashcard-media-card {
+            width: 100%;
+            max-width: 520px;
+            height: 220px;
+            margin: 0 auto 18px auto;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .spelling-media-card img, .flashcard-media-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .spelling-media-card img:hover, .flashcard-media-card img:hover {
+            transform: scale(1.02);
+        }
+
         /* Interactive Practice Section */
         .practice-container {
             background: var(--bg-surface);
@@ -2190,12 +2323,65 @@
                 from { transform: translateY(25px); opacity: 0; }
                 to { transform: translateY(0); opacity: 1; }
             }
+
+            .enterprise-navbar {
+                flex-wrap: wrap;
+                padding: 10px 14px;
+                gap: 10px;
+            }
+            .nav-brand-text .brand-sub {
+                display: none;
+            }
+            .nav-mode-tabs {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+            }
+            .nav-mode-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 7px 8px;
+                font-size: 0.8rem;
+            }
+            .nav-cta-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            .spelling-media-card, .flashcard-media-card {
+                height: 170px;
+                margin-bottom: 14px;
+            }
         }
 
     </style>
 </head>
 <body>
     <div class="app-container">
+        <!-- Enterprise Top Navigation Bar -->
+        <nav class="enterprise-navbar" id="enterpriseNavbar">
+            <div class="nav-brand">
+                <span class="nav-brand-badge">PRO</span>
+                <div class="nav-brand-text">
+                    <span class="brand-title">Graded Reader</span>
+                    <span class="brand-sub">Comprehensible Input (i+1)</span>
+                </div>
+            </div>
+            <div class="nav-mode-tabs">
+                <button class="nav-mode-btn active" id="navModeReader" onclick="switchMainView('reader')">
+                    <span>📖</span> <span>Bài Đọc Phân Tầng</span>
+                </button>
+                <button class="nav-mode-btn" id="navModePractice" onclick="switchMainView('practice')">
+                    <span>🚀</span> <span>Khu Vực Ôn Tập</span>
+                    <span class="nav-tab-badge">50 từ</span>
+                </button>
+            </div>
+            <div class="nav-cta-area">
+                <button class="nav-cta-btn" onclick="switchMainView('practice')">
+                    <span>⚡ Luyện Tập Ngay</span>
+                </button>
+            </div>
+        </nav>
+
         <header class="hero">
             <div class="hero-badge">
                 <span class="badge-dot"></span>
@@ -2507,6 +2693,10 @@
                         </div>
                     </div>
 
+                    <div class="spelling-media-card" id="spellingMediaWrap">
+                        <img id="spellingImage" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80" alt="Minh hoạ từ vựng" loading="lazy">
+                    </div>
+
                     <div class="spelling-prompt-area">
                         <div class="spelling-audio-row">
                             <button class="spelling-audio-btn" id="btnPlaySentenceAudio" onclick="playCurrentSentenceAudio()" title="Nghe toàn bộ câu ngữ cảnh hoàn chỉnh">
@@ -2567,6 +2757,9 @@
 
                     <!-- Front Side -->
                     <div class="flashcard-front" id="flashcardFront" onclick="flipAnkiCard(true)" style="cursor:pointer;">
+                        <div class="flashcard-media-card" id="ankiMediaWrap">
+                            <img id="ankiImageFront" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80" alt="Minh hoạ từ vựng" loading="lazy">
+                        </div>
                         <div class="flashcard-pos" id="ankiPosFront">[noun]</div>
                         <div class="flashcard-audio-wrap">
                             <button class="btn-speak-main" onclick="event.stopPropagation(); playCurrentAnkiAudio()">
@@ -2659,13 +2852,41 @@
 
     <script>
         const VOCAB_DATA = [{"word": "again", "ipa": "/əˈɡen/", "pos": "adverb", "meaning_vn": "lại, một lần nữa", "usage_note": "Lặp lại hành động: see you again.", "example_a1": "Every day, I practice: again.", "example_a2": "When traveling abroad, using 'again' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'again' provides a strong foundation for practical fluency.", "cloze_anki_front": "He paused and asked: 'Could you please repeat ______?'", "cloze_anki_back": "again (/əˈɡen/) - lại, một lần nữa"}, {"word": "China", "ipa": "/ˈtʃaɪnə/", "pos": "noun", "meaning_vn": "nước Trung Quốc", "usage_note": "Đất nước Trung Quốc: travel to China.", "example_a1": "Every day, I practice: China.", "example_a2": "When traveling abroad, using 'China' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'China' provides a strong foundation for practical fluency.", "cloze_anki_front": "The Great Wall is one of the most iconic historical monuments in ______.", "cloze_anki_back": "China (/ˈtʃaɪnə/) - nước Trung Quốc"}, {"word": "sweater", "ipa": "/ˈswetə/", "pos": "noun", "meaning_vn": "áo len", "usage_note": "Mặc khi trời lạnh: wear a warm sweater.", "example_a1": "Every day, I practice: sweater.", "example_a2": "When traveling abroad, using 'sweater' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'sweater' provides a strong foundation for practical fluency.", "cloze_anki_front": "Before stepping into the freezing wind, he put on his thick ______.", "cloze_anki_back": "sweater (/ˈswetə/) - áo len"}, {"word": "scarf", "ipa": "/skɑːf/", "pos": "noun", "meaning_vn": "khăn quàng cổ", "usage_note": "Quàng quanh cổ giữ ấm: a wool scarf.", "example_a1": "Every day, I practice: scarf.", "example_a2": "When traveling abroad, using 'scarf' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'scarf' provides a strong foundation for practical fluency.", "cloze_anki_front": "During the cold winter morning, she wrapped a warm ______ around her neck.", "cloze_anki_back": "scarf (/skɑːf/) - khăn quàng cổ"}, {"word": "windy", "ipa": "/ˈwɪndi/", "pos": "adjective", "meaning_vn": "có nhiều gió, lộng gió", "usage_note": "Thời tiết gió to: a windy morning.", "example_a1": "Every day, I practice: windy.", "example_a2": "When traveling abroad, using 'windy' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'windy' provides a strong foundation for practical fluency.", "cloze_anki_front": "Hold onto your umbrella because it is extremely ______ outside.", "cloze_anki_back": "windy (/ˈwɪndi/) - có nhiều gió, lộng gió"}, {"word": "it's", "ipa": "/ɪts/", "pos": "contraction", "meaning_vn": "nó là, trời thì (dạng viết tắt của it is)", "usage_note": "Dùng miêu tả thời tiết, sự vật: It's nice.", "example_a1": "Every day, I practice: it's.", "example_a2": "When traveling abroad, using 'it's' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'it's' provides a strong foundation for practical fluency.", "cloze_anki_front": "Look at the thermometer; ______ nearly zero degrees outside.", "cloze_anki_back": "it's (/ɪts/) - nó là, trời thì (dạng viết tắt của it is)"}, {"word": "is it", "ipa": "/ɪz ɪt/", "pos": "phrase", "meaning_vn": "có phải là không?", "usage_note": "Dạng câu hỏi đảo ngữ: Is it cold outside?", "example_a1": "Every day, I practice: is it.", "example_a2": "When traveling abroad, using 'is it' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'is it' provides a strong foundation for practical fluency.", "cloze_anki_front": "Excuse me, ______ possible to schedule an appointment for tomorrow?", "cloze_anki_back": "is it (/ɪz ɪt/) - có phải là không?"}, {"word": "hat", "ipa": "/hæt/", "pos": "noun", "meaning_vn": "chiếc mũ, nón", "usage_note": "Đội đầu giữ ấm hoặc che nắng: put on a hat.", "example_a1": "Every day, I practice: hat.", "example_a2": "When traveling abroad, using 'hat' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'hat' provides a strong foundation for practical fluency.", "cloze_anki_front": "He shielded his face from the sun with a wide-brimmed ______.", "cloze_anki_back": "hat (/hæt/) - chiếc mũ, nón"}, {"word": "foggy", "ipa": "/ˈfɒɡi/", "pos": "adjective", "meaning_vn": "có sương mù, sương mờ", "usage_note": "Tầm nhìn hạn chế do sương mù: foggy weather.", "example_a1": "Every day, I practice: foggy.", "example_a2": "When traveling abroad, using 'foggy' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'foggy' provides a strong foundation for practical fluency.", "cloze_anki_front": "Drivers slowed down on the highway because the morning air was ______.", "cloze_anki_back": "foggy (/ˈfɒɡi/) - có sương mù, sương mờ"}, {"word": "need", "ipa": "/niːd/", "pos": "verb", "meaning_vn": "cần, cần thiết", "usage_note": "Chỉ nhu cầu thiết yếu: I need a warm coat.", "example_a1": "Every day, I practice: need.", "example_a2": "When traveling abroad, using 'need' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'need' provides a strong foundation for practical fluency.", "cloze_anki_front": "To travel internationally, you definitely ______ a valid passport.", "cloze_anki_back": "need (/niːd/) - cần, cần thiết"}, {"word": "cloudy", "ipa": "/ˈklaʊdi/", "pos": "adjective", "meaning_vn": "nhiều mây, trời âm u", "usage_note": "Trời có nhiều mây che nắng: cloudy sky.", "example_a1": "Every day, I practice: cloudy.", "example_a2": "When traveling abroad, using 'cloudy' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'cloudy' provides a strong foundation for practical fluency.", "cloze_anki_front": "Looking up, we saw grey, overcast skies because it was ______.", "cloze_anki_back": "cloudy (/ˈklaʊdi/) - nhiều mây, trời âm u"}, {"word": "in", "ipa": "/ɪn/", "pos": "preposition", "meaning_vn": "ở trong, vào (giới từ)", "usage_note": "Chỉ vị trí hoặc không gian bên trong: in the room.", "example_a1": "Every day, I practice: in.", "example_a2": "When traveling abroad, using 'in' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'in' provides a strong foundation for practical fluency.", "cloze_anki_front": "She placed the notebook safely ______ her backpack.", "cloze_anki_back": "in (/ɪn/) - ở trong, vào (giới từ)"}, {"word": "there", "ipa": "/ðeə/", "pos": "adverb", "meaning_vn": "ở đó, đằng kia", "usage_note": "Chỉ vị trí xa người nói: Over there.", "example_a1": "Every day, I practice: there.", "example_a2": "When traveling abroad, using 'there' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'there' provides a strong foundation for practical fluency.", "cloze_anki_front": "Look across the street; our favorite bookstore is located over ______.", "cloze_anki_back": "there (/ðeə/) - ở đó, đằng kia"}, {"word": "it's hot", "ipa": "/ɪts hɒt/", "pos": "phrase", "meaning_vn": "trời nóng bức", "usage_note": "Miêu tả thời tiết nhiệt độ cao: It's hot in summer.", "example_a1": "Every day, I practice: it's hot.", "example_a2": "When traveling abroad, using 'it's hot' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'it's hot' provides a strong foundation for practical fluency.", "cloze_anki_front": "Summer has arrived in the city, and ______ in July.", "cloze_anki_back": "it's hot (/ɪts hɒt/) - trời nóng bức"}, {"word": "it's sunny", "ipa": "/ɪts ˈsʌni/", "pos": "phrase", "meaning_vn": "trời nắng đẹp", "usage_note": "Trời chan hòa ánh nắng: It's sunny outside.", "example_a1": "Every day, I practice: it's sunny.", "example_a2": "When traveling abroad, using 'it's sunny' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'it's sunny' provides a strong foundation for practical fluency.", "cloze_anki_front": "Let's go for a picnic in the park while ______.", "cloze_anki_back": "it's sunny (/ɪts ˈsʌni/) - trời nắng đẹp"}, {"word": "it's cold", "ipa": "/ɪts kəʊld/", "pos": "phrase", "meaning_vn": "trời lạnh giá", "usage_note": "Thời tiết nhiệt độ thấp: It's cold today.", "example_a1": "Every day, I practice: it's cold.", "example_a2": "When traveling abroad, using 'it's cold' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'it's cold' provides a strong foundation for practical fluency.", "cloze_anki_front": "The weather is very chilly today because ______ outside.", "cloze_anki_back": "it's cold (/ɪts kəʊld/) - trời lạnh giá"}, {"word": "here", "ipa": "/hɪə/", "pos": "adverb", "meaning_vn": "ở đây, tại nơi này", "usage_note": "Chỉ vị trí gần người nói: Come here.", "example_a1": "Every day, I practice: here.", "example_a2": "When traveling abroad, using 'here' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'here' provides a strong foundation for practical fluency.", "cloze_anki_front": "Please place your signed application form right ______ on the desk.", "cloze_anki_back": "here (/hɪə/) - ở đây, tại nơi này"}, {"word": "it's rainy", "ipa": "/ɪts ˈreɪni/", "pos": "phrase", "meaning_vn": "trời mưa", "usage_note": "Trời có mưa rơi: It's rainy this afternoon.", "example_a1": "Every day, I practice: it's rainy.", "example_a2": "When traveling abroad, using 'it's rainy' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'it's rainy' provides a strong foundation for practical fluency.", "cloze_anki_front": "Don't forget to take a raincoat since ______ today.", "cloze_anki_back": "it's rainy (/ɪts ˈreɪni/) - trời mưa"}, {"word": "today", "ipa": "/təˈdeɪ/", "pos": "adverb / noun", "meaning_vn": "hôm nay", "usage_note": "Chỉ ngày hiện tại: Today is a nice day.", "example_a1": "Every day, I practice: today.", "example_a2": "When traveling abroad, using 'today' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'today' provides a strong foundation for practical fluency.", "cloze_anki_front": "We have an important examination scheduled for ______.", "cloze_anki_back": "today (/təˈdeɪ/) - hôm nay"}, {"word": "at home", "ipa": "/æt həʊm/", "pos": "phrase", "meaning_vn": "ở nhà", "usage_note": "Ở trong căn nhà của mình: stay at home.", "example_a1": "Every day, I practice: at home.", "example_a2": "When traveling abroad, using 'at home' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'at home' provides a strong foundation for practical fluency.", "cloze_anki_front": "On relaxing weekends, I love staying comfortably ______.", "cloze_anki_back": "at home (/æt həʊm/) - ở nhà"}, {"word": "well", "ipa": "/wel/", "pos": "adverb", "meaning_vn": "tốt, giỏi, thành thạo", "usage_note": "Làm tốt việc gì: speak English well.", "example_a1": "Every day, I practice: well.", "example_a2": "When traveling abroad, using 'well' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'well' provides a strong foundation for practical fluency.", "cloze_anki_front": "Through consistent daily practice, she now plays the piano very ______.", "cloze_anki_back": "well (/wel/) - tốt, giỏi, thành thạo"}, {"word": "Hindi", "ipa": "/ˈhɪndi/", "pos": "noun", "meaning_vn": "tiếng Hindi (Ấn Độ)", "usage_note": "Ngôn ngữ chính tại Ấn Độ: speak a little Hindi.", "example_a1": "Every day, I practice: Hindi.", "example_a2": "When traveling abroad, using 'Hindi' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'Hindi' provides a strong foundation for practical fluency.", "cloze_anki_front": "Bollywood films have popularized conversational phrases in ______ worldwide.", "cloze_anki_back": "Hindi (/ˈhɪndi/) - tiếng Hindi (Ấn Độ)"}, {"word": "hard", "ipa": "/hɑːd/", "pos": "adverb / adj", "meaning_vn": "chăm chỉ; khó khăn", "usage_note": "Học hành chăm chỉ: study hard.", "example_a1": "Every day, I practice: hard.", "example_a2": "When traveling abroad, using 'hard' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'hard' provides a strong foundation for practical fluency.", "cloze_anki_front": "Preparing for advanced medical licensing exams is exceptionally ______.", "cloze_anki_back": "hard (/hɑːd/) - chăm chỉ; khó khăn"}, {"word": "a little", "ipa": "/ə ˈlɪtl/", "pos": "phrase", "meaning_vn": "một chút, một ít", "usage_note": "Chỉ số lượng nhỏ: understand a little.", "example_a1": "Every day, I practice: a little.", "example_a2": "When traveling abroad, using 'a little' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'a little' provides a strong foundation for practical fluency.", "cloze_anki_front": "Even knowing ______ bit of the local dialect helps tourists tremendously.", "cloze_anki_back": "a little (/ə ˈlɪtl/) - một chút, một ít"}, {"word": "at school", "ipa": "/æt skuːl/", "pos": "phrase", "meaning_vn": "ở trường học", "usage_note": "Đang học tại trường: we study at school.", "example_a1": "Every day, I practice: at school.", "example_a2": "When traveling abroad, using 'at school' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'at school' provides a strong foundation for practical fluency.", "cloze_anki_front": "Students gather to learn and discuss ideas together ______.", "cloze_anki_back": "at school (/æt skuːl/) - ở trường học"}, {"word": "study", "ipa": "/ˈstʌdi/", "pos": "verb", "meaning_vn": "học tập, nghiên cứu", "usage_note": "Học một môn hoặc ngôn ngữ: study English.", "example_a1": "Every day, I practice: study.", "example_a2": "When traveling abroad, using 'study' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'study' provides a strong foundation for practical fluency.", "cloze_anki_front": "Every weekend, motivated students ______ hard for the upcoming finals.", "cloze_anki_back": "study (/ˈstʌdi/) - học tập, nghiên cứu"}, {"word": "Chinese", "ipa": "/ˌtʃaɪˈniːz/", "pos": "noun / adj", "meaning_vn": "tiếng Trung Quốc, người Trung Quốc", "usage_note": "Ngôn ngữ hoặc quốc tịch: practice Chinese.", "example_a1": "Every day, I practice: Chinese.", "example_a2": "When traveling abroad, using 'Chinese' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'Chinese' provides a strong foundation for practical fluency.", "cloze_anki_front": "Mandarin is the official spoken form of the ______ language.", "cloze_anki_back": "Chinese (/ˌtʃaɪˈniːz/) - tiếng Trung Quốc, người Trung Quốc"}, {"word": "oh", "ipa": "/əʊ/", "pos": "interjection", "meaning_vn": "ồ, ô kìa (thán từ)", "usage_note": "Bày tỏ cảm xúc ngạc nhiên, nhận ra: Oh, I see.", "example_a1": "Every day, I practice: oh.", "example_a2": "When traveling abroad, using 'oh' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'oh' provides a strong foundation for practical fluency.", "cloze_anki_front": "'______, now I completely understand how this mechanism works!'", "cloze_anki_back": "oh (/əʊ/) - ồ, ô kìa (thán từ)"}, {"word": "understand", "ipa": "/ˌʌndəˈstænd/", "pos": "verb", "meaning_vn": "hiểu, thấu hiểu", "usage_note": "Nắm được nghĩa hoặc nội dung: I understand you.", "example_a1": "Every day, I practice: understand.", "example_a2": "When traveling abroad, using 'understand' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'understand' provides a strong foundation for practical fluency.", "cloze_anki_front": "Do you clearly ______ the instructions provided by the instructor?", "cloze_anki_back": "understand (/ˌʌndəˈstænd/) - hiểu, thấu hiểu"}, {"word": "you", "ipa": "/juː/", "pos": "pronoun", "meaning_vn": "bạn, các bạn", "usage_note": "Đại từ nhân xưng ngôi thứ 2: Nice to meet you.", "example_a1": "Every day, I practice: you.", "example_a2": "When traveling abroad, using 'you' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'you' provides a strong foundation for practical fluency.", "cloze_anki_front": "Could ______ please explain this concept one more time?", "cloze_anki_back": "you (/juː/) - bạn, các bạn"}, {"word": "I", "ipa": "/aɪ/", "pos": "pronoun", "meaning_vn": "tôi, mình", "usage_note": "Đại từ nhân xưng ngôi thứ 1: I am a student.", "example_a1": "Every day, I practice: I.", "example_a2": "When traveling abroad, using 'I' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'I' provides a strong foundation for practical fluency.", "cloze_anki_front": "Whenever ______ encounter a difficult problem, I consult the textbook.", "cloze_anki_back": "I (/aɪ/) - tôi, mình"}, {"word": "only", "ipa": "/ˈəʊnli/", "pos": "adverb", "meaning_vn": "chỉ, duy nhất", "usage_note": "Giới hạn: only one person.", "example_a1": "Every day, I practice: only.", "example_a2": "When traveling abroad, using 'only' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'only' provides a strong foundation for practical fluency.", "cloze_anki_front": "He has ______ thirty minutes left to submit his research report.", "cloze_anki_back": "only (/ˈəʊnli/) - chỉ, duy nhất"}, {"word": "Spanish", "ipa": "/ˈspænɪʃ/", "pos": "noun / adj", "meaning_vn": "tiếng Tây Ban Nha", "usage_note": "Ngôn ngữ Tây Ban Nha: speak Spanish.", "example_a1": "Every day, I practice: Spanish.", "example_a2": "When traveling abroad, using 'Spanish' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'Spanish' provides a strong foundation for practical fluency.", "cloze_anki_front": "Millions of people across South America and Spain converse in ______.", "cloze_anki_back": "Spanish (/ˈspænɪʃ/) - tiếng Tây Ban Nha"}, {"word": "English", "ipa": "/ˈɪŋɡlɪʃ/", "pos": "noun / adj", "meaning_vn": "tiếng Anh", "usage_note": "Ngôn ngữ tiếng Anh: learn English.", "example_a1": "Every day, I practice: English.", "example_a2": "When traveling abroad, using 'English' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'English' provides a strong foundation for practical fluency.", "cloze_anki_front": "Learning to communicate in international ______ opens global opportunities.", "cloze_anki_back": "English (/ˈɪŋɡlɪʃ/) - tiếng Anh"}, {"word": "speak", "ipa": "/spiːk/", "pos": "verb", "meaning_vn": "nói, giao tiếp", "usage_note": "Nói một ngôn ngữ: speak two languages.", "example_a1": "Every day, I practice: speak.", "example_a2": "When traveling abroad, using 'speak' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'speak' provides a strong foundation for practical fluency.", "cloze_anki_front": "In global conferences, delegates from around the world ______ fluent English.", "cloze_anki_back": "speak (/spiːk/) - nói, giao tiếp"}, {"word": "great", "ipa": "/ɡreɪt/", "pos": "adjective", "meaning_vn": "tuyệt vời, rất tốt", "usage_note": "Khen ngợi: a great friend.", "example_a1": "Every day, I practice: great.", "example_a2": "When traveling abroad, using 'great' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'great' provides a strong foundation for practical fluency.", "cloze_anki_front": "Winning first prize in the national competition was a ______ achievement.", "cloze_anki_back": "great (/ɡreɪt/) - tuyệt vời, rất tốt"}, {"word": "friend", "ipa": "/frend/", "pos": "noun", "meaning_vn": "người bạn, bạn bè", "usage_note": "Bạn thân thiết: a good friend.", "example_a1": "Every day, I practice: friend.", "example_a2": "When traveling abroad, using 'friend' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'friend' provides a strong foundation for practical fluency.", "cloze_anki_front": "A loyal ______ is someone who stands by you in times of difficulty.", "cloze_anki_back": "friend (/frend/) - người bạn, bạn bè"}, {"word": "job", "ipa": "/dʒɒb/", "pos": "noun", "meaning_vn": "công việc, nghề nghiệp", "usage_note": "Nghề làm kiếm sống: find a good job.", "example_a1": "Every day, I practice: job.", "example_a2": "When traveling abroad, using 'job' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'job' provides a strong foundation for practical fluency.", "cloze_anki_front": "After graduating, he applied for an exciting new ______ in technology.", "cloze_anki_back": "job (/dʒɒb/) - công việc, nghề nghiệp"}, {"word": "cousin", "ipa": "/ˈkʌzn/", "pos": "noun", "meaning_vn": "anh chị em họ", "usage_note": "Con của cô dì chú bác: my favorite cousin.", "example_a1": "Every day, I practice: cousin.", "example_a2": "When traveling abroad, using 'cousin' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'cousin' provides a strong foundation for practical fluency.", "cloze_anki_front": "During the family reunion, I enjoyed talking with my favorite ______.", "cloze_anki_back": "cousin (/ˈkʌzn/) - anh chị em họ"}, {"word": "writer", "ipa": "/ˈraɪtə/", "pos": "noun", "meaning_vn": "nhà văn, người viết sách", "usage_note": "Người sáng tác văn chương: a book writer.", "example_a1": "Every day, I practice: writer.", "example_a2": "When traveling abroad, using 'writer' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'writer' provides a strong foundation for practical fluency.", "cloze_anki_front": "He is a famous ______ who published three novels this year.", "cloze_anki_back": "writer (/ˈraɪtə/) - nhà văn, người viết sách"}, {"word": "lawyer", "ipa": "/ˈlɔːjə/", "pos": "noun", "meaning_vn": "luật sư", "usage_note": "Người hành nghề luật: a professional lawyer.", "example_a1": "Every day, I practice: lawyer.", "example_a2": "When traveling abroad, using 'lawyer' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'lawyer' provides a strong foundation for practical fluency.", "cloze_anki_front": "The client hired an experienced ______ to defend his case in court.", "cloze_anki_back": "lawyer (/ˈlɔːjə/) - luật sư"}, {"word": "nurse", "ipa": "/nɜːs/", "pos": "noun", "meaning_vn": "y tá, điều dưỡng", "usage_note": "Nhân viên y tế chăm sóc bệnh nhân: a hospital nurse.", "example_a1": "Every day, I practice: nurse.", "example_a2": "When traveling abroad, using 'nurse' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'nurse' provides a strong foundation for practical fluency.", "cloze_anki_front": "She works as a caring ______ at the city hospital.", "cloze_anki_back": "nurse (/nɜːs/) - y tá, điều dưỡng"}, {"word": "husband", "ipa": "/ˈhʌzbənd/", "pos": "noun", "meaning_vn": "người chồng", "usage_note": "Người phối ngẫu nam: her kind husband.", "example_a1": "Every day, I practice: husband.", "example_a2": "When traveling abroad, using 'husband' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'husband' provides a strong foundation for practical fluency.", "cloze_anki_front": "Her loving ______ surprised her with a bouquet of flowers.", "cloze_anki_back": "husband (/ˈhʌzbənd/) - người chồng"}, {"word": "now", "ipa": "/naʊ/", "pos": "adverb", "meaning_vn": "bây giờ, hiện tại", "usage_note": "Chỉ thời điểm lúc này: study now.", "example_a1": "Every day, I practice: now.", "example_a2": "When traveling abroad, using 'now' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'now' provides a strong foundation for practical fluency.", "cloze_anki_front": "The concert is starting right ______, so please take your seats.", "cloze_anki_back": "now (/naʊ/) - bây giờ, hiện tại"}, {"word": "teacher", "ipa": "/ˈtiːtʃə/", "pos": "noun", "meaning_vn": "giáo viên, thầy cô giáo", "usage_note": "Người giảng dạy: an English teacher.", "example_a1": "Every day, I practice: teacher.", "example_a2": "When traveling abroad, using 'teacher' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'teacher' provides a strong foundation for practical fluency.", "cloze_anki_front": "Our passionate ______ explained the grammar lesson patiently.", "cloze_anki_back": "teacher (/ˈtiːtʃə/) - giáo viên, thầy cô giáo"}, {"word": "roommate", "ipa": "/ˈruːmmeɪt/", "pos": "noun", "meaning_vn": "bạn cùng phòng", "usage_note": "Người ở cùng phòng: my new roommate.", "example_a1": "Every day, I practice: roommate.", "example_a2": "When traveling abroad, using 'roommate' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'roommate' provides a strong foundation for practical fluency.", "cloze_anki_front": "My friendly ______ always keeps the shared apartment clean.", "cloze_anki_back": "roommate (/ˈruːmmeɪt/) - bạn cùng phòng"}, {"word": "wife", "ipa": "/waɪf/", "pos": "noun", "meaning_vn": "người vợ", "usage_note": "Người phối ngẫu nữ: his loving wife.", "example_a1": "Every day, I practice: wife.", "example_a2": "When traveling abroad, using 'wife' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'wife' provides a strong foundation for practical fluency.", "cloze_anki_front": "He cooked dinner for his lovely ______ after a long workday.", "cloze_anki_back": "wife (/waɪf/) - người vợ"}, {"word": "chef", "ipa": "/ʃef/", "pos": "noun", "meaning_vn": "đầu bếp, bếp trưởng", "usage_note": "Người nấu ăn chuyên nghiệp: a restaurant chef.", "example_a1": "Every day, I practice: chef.", "example_a2": "When traveling abroad, using 'chef' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'chef' provides a strong foundation for practical fluency.", "cloze_anki_front": "In the cozy Italian bistro, the talented ______ cooked fresh pasta.", "cloze_anki_back": "chef (/ʃef/) - đầu bếp, bếp trưởng"}, {"word": "what do you do", "ipa": "/wɒt duː juː duː/", "pos": "phrase", "meaning_vn": "bạn làm nghề gì?", "usage_note": "Câu hỏi nghề nghiệp xã giao: What do you do for a living?", "example_a1": "Every day, I practice: what do you do.", "example_a2": "When traveling abroad, using 'what do you do' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'what do you do' provides a strong foundation for practical fluency.", "cloze_anki_front": "When you meet someone new, you can ask: '______?' to know their profession.", "cloze_anki_back": "what do you do (/wɒt duː juː duː/) - bạn làm nghề gì?"}, {"word": "student", "ipa": "/ˈstjuːdnt/", "pos": "noun", "meaning_vn": "học sinh, sinh viên", "usage_note": "Người đi học: a university student.", "example_a1": "Every day, I practice: student.", "example_a2": "When traveling abroad, using 'student' helps you communicate clearly.", "example_a3_b1": "Mastering everyday expressions such as 'student' provides a strong foundation for practical fluency.", "cloze_anki_front": "As an active university ______, she studies late every evening.", "cloze_anki_back": "student (/ˈstjuːdnt/) - học sinh, sinh viên"}];
+        const VOCAB_IMAGES = {"again": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80", "china": "https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=700&auto=format&fit=crop&q=80", "sweater": "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&auto=format&fit=crop&q=80", "scarf": "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=700&auto=format&fit=crop&q=80", "windy": "https://images.unsplash.com/photo-1505672678857-8f9370d0d3a7?w=700&auto=format&fit=crop&q=80", "it's": "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=700&auto=format&fit=crop&q=80", "is it": "https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=700&auto=format&fit=crop&q=80", "hat": "https://images.unsplash.com/photo-1534215754734-18e55d13e346?w=700&auto=format&fit=crop&q=80", "foggy": "https://images.unsplash.com/photo-1487621167305-5d248087c724?w=700&auto=format&fit=crop&q=80", "need": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=700&auto=format&fit=crop&q=80", "cloudy": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?w=700&auto=format&fit=crop&q=80", "in": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=700&auto=format&fit=crop&q=80", "there": "https://images.unsplash.com/photo-1477959858617-67f30bc75b82?w=700&auto=format&fit=crop&q=80", "it's hot": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&auto=format&fit=crop&q=80", "it's sunny": "https://images.unsplash.com/photo-1601297183305-6df142704ea2?w=700&auto=format&fit=crop&q=80", "it's cold": "https://images.unsplash.com/photo-1483921020237-2ff51e8e4b22?w=700&auto=format&fit=crop&q=80", "here": "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=700&auto=format&fit=crop&q=80", "it's rainy": "https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?w=700&auto=format&fit=crop&q=80", "today": "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=700&auto=format&fit=crop&q=80", "at home": "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=700&auto=format&fit=crop&q=80", "well": "https://images.unsplash.com/photo-1520523839898-507125cd53c1?w=700&auto=format&fit=crop&q=80", "hindi": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=700&auto=format&fit=crop&q=80", "hard": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=700&auto=format&fit=crop&q=80", "a little": "https://images.unsplash.com/photo-1544717305-2782549b5136?w=700&auto=format&fit=crop&q=80", "at school": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=700&auto=format&fit=crop&q=80", "study": "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=700&auto=format&fit=crop&q=80", "chinese": "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?w=700&auto=format&fit=crop&q=80", "oh": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&auto=format&fit=crop&q=80", "understand": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700&auto=format&fit=crop&q=80", "you": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=700&auto=format&fit=crop&q=80", "i": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=700&auto=format&fit=crop&q=80", "only": "https://images.unsplash.com/photo-1501139083538-0139583c060f?w=700&auto=format&fit=crop&q=80", "spanish": "https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=700&auto=format&fit=crop&q=80", "english": "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=700&auto=format&fit=crop&q=80", "speak": "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=700&auto=format&fit=crop&q=80", "great": "https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?w=700&auto=format&fit=crop&q=80", "friend": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=700&auto=format&fit=crop&q=80", "job": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=700&auto=format&fit=crop&q=80", "cousin": "https://images.unsplash.com/photo-1511895426328-dc8714191300?w=700&auto=format&fit=crop&q=80", "writer": "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=700&auto=format&fit=crop&q=80", "lawyer": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=700&auto=format&fit=crop&q=80", "nurse": "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=700&auto=format&fit=crop&q=80", "husband": "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=700&auto=format&fit=crop&q=80", "now": "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=700&auto=format&fit=crop&q=80", "teacher": "https://images.unsplash.com/photo-1577896851231-70ef18881754?w=700&auto=format&fit=crop&q=80", "roommate": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700&auto=format&fit=crop&q=80", "wife": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=700&auto=format&fit=crop&q=80", "chef": "https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=700&auto=format&fit=crop&q=80", "what do you do": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&auto=format&fit=crop&q=80", "student": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=700&auto=format&fit=crop&q=80"};
         const INITIAL_TARGET_WORDS = JSON.parse(JSON.stringify(VOCAB_DATA));
         const PASSAGE_GLOSSARY = {};
         const SENTENCE_PAIRS = [{"en": "Today, I wake up early at home.", "vi": "Hôm nay, tôi thức dậy sớm ở nhà."}, {"en": "Outside, it's cold and very windy.", "vi": "Bên ngoài, trời lạnh và rất nhiều gió."}, {"en": "The sky is grey and cloudy.", "vi": "Bầu trời xám xịt và nhiều mây."}, {"en": "My roommate says, 'Oh, look out the window!", "vi": "Bạn cùng phòng của tôi nói: 'Ồ, nhìn ra ngoài cửa sổ kìa!"}, {"en": "Is it foggy there?' Yes, here it's quite dark.", "vi": "Đằng kia trời có sương mù không?' Đúng vậy, ở đây trời khá tối."}, {"en": "I need a thick sweater, a warm scarf, and a hat.", "vi": "Tôi cần một chiếc áo len dày, một chiếc khăn quàng cổ ấm và một chiếc mũ."}, {"en": "My wife is sitting in the kitchen.", "vi": "Vợ tôi đang ngồi trong bếp."}, {"en": "She smiles and says, 'Now have some warm tea.", "vi": "Cô ấy mỉm cười và nói: 'Bây giờ hãy uống một chút trà nóng."}, {"en": "It is not warm outside, but inside our house, everything is great!'", "vi": "Bên ngoài không ấm, nhưng trong nhà chúng ta thì mọi thứ đều tuyệt vời!'"}, {"en": "Later, I arrive at school.", "vi": "Sau đó, tôi đến trường học."}, {"en": "I am a student, and I study languages with my teacher.", "vi": "Tôi là một học sinh, và tôi học các ngôn ngữ cùng thầy giáo của mình."}, {"en": "In my class, I meet a new friend.", "vi": "Trong lớp học, tôi gặp một người bạn mới."}, {"en": "He comes from China.", "vi": "Bạn ấy đến từ Trung Quốc."}, {"en": "He can speak Chinese and English very well.", "vi": "Bạn ấy có thể nói tiếng Trung và tiếng Anh rất giỏi."}, {"en": "He asks me, 'Do you understand Spanish or Hindi?' I smile and answer, 'I only understand a little Spanish.", "vi": "Bạn ấy hỏi tôi: 'Bạn có hiểu tiếng Tây Ban Nha hay tiếng Hindi không?' Tôi cười và đáp: 'Tôi chỉ hiểu một chút tiếng Tây Ban Nha thôi."}, {"en": "Hindi is hard for me, but I want to practice again!'", "vi": "Tiếng Hindi hơi khó với tôi, nhưng tôi muốn luyện tập lại!'"}, {"en": "In the afternoon, the weather changes.", "vi": "Vào buổi chiều, thời tiết thay đổi."}, {"en": "It's rainy, so we go to a cafe.", "vi": "Trời đổ mưa, vì vậy chúng tôi vào một quán cà phê."}, {"en": "My cousin joins us with her husband.", "vi": "Chị họ của tôi đi cùng chồng của chị ấy."}, {"en": "My friend turns to them and asks, 'What do you do?' That is a good question about each person's job.", "vi": "Bạn tôi quay sang họ và hỏi: 'Anh chị làm nghề gì ạ?' Đó là một câu hỏi hay về nghề nghiệp của mỗi người."}, {"en": "My cousin says, 'I am a nurse at a clinic, and my husband is a writer.' Another friend adds, 'My sister is a lawyer, and her brother is a famous chef in town!'", "vi": "Chị họ tôi nói: 'Tôi là y tá tại một phòng khám, còn chồng tôi là nhà văn.' Một người bạn khác tiếp lời: 'Chị gái mình là luật sư, còn anh trai là đầu bếp nổi tiếng trong thị trấn!'"}, {"en": "People around the world live in different weather conditions.", "vi": "Mọi người trên khắp thế giới sống trong những điều kiện thời tiết khác nhau."}, {"en": "While it's sunny and it's hot in southern countries, it's cold and foggy in northern cities today.", "vi": "Trong khi trời nắng và nóng ở các quốc gia phương nam, thì hôm nay trời lại lạnh và có sương mù ở các thành phố phương bắc."}, {"en": "When the weather is windy and wet, many people prefer to stay at home with their roommate or family, wearing a comfortable sweater and hat.", "vi": "Khi thời tiết nhiều gió và ẩm ướt, nhiều người thích ở nhà cùng bạn cùng phòng hoặc gia đình, mặc một chiếc áo len thoải mái và đội mũ."}, {"en": "However, workers must travel to their job.", "vi": "Tuy nhiên, người đi làm vẫn phải di chuyển đến nơi làm việc."}, {"en": "A hospital nurse cares for patients, a talented chef prepares warm soup, while a lawyer and a writer study documents carefully.", "vi": "Một y tá bệnh viện chăm sóc bệnh nhân, một đầu bếp tài ba chuẩn bị súp nóng, trong khi luật sư và nhà văn nghiên cứu tài liệu cẩn thận."}, {"en": "Being able to speak English and another language like Spanish or Chinese helps everyone collaborate smoothly.", "vi": "Việc có thể nói tiếng Anh và một ngôn ngữ khác như tiếng Tây Ban Nha hoặc tiếng Trung giúp mọi người phối hợp nhịp nhàng."}, {"en": "Human lifestyles are deeply influenced by two fundamental elements: climate patterns and linguistic heritage.", "vi": "Phong cách sống của con người chịu ảnh hưởng sâu sắc bởi hai yếu tố cơ bản: quy luật khí hậu và di sản ngôn ngữ."}, {"en": "Whether one wakes up where it's sunny or where chilly breezes make a warm scarf essential, our daily routines adapt to the surrounding environment.", "vi": "Dù một người thức dậy ở nơi trời nắng hay nơi những cơn gió lạnh khiến chiếc khăn quàng cổ trở nên thiết yếu, nhịp sống hàng ngày của chúng ta luôn thích nghi với môi trường xung quanh."}, {"en": "In modern multicultural societies, social connections transcend simple boundaries.", "vi": "Trong các xã hội đa văn hóa hiện đại, sự gắn kết xã hội vượt qua những ranh giới đơn thuần."}, {"en": "When someone asks 'What do you do?', the answer reflects personal passion rather than mere economic necessity—from a dedicated nurse providing healthcare to a creative chef crafting culinary art, or a lawyer advocating justice.", "vi": "Khi ai đó hỏi 'Bạn làm nghề gì?', câu trả lời phản ánh niềm đam mê cá nhân hơn là chỉ đơn thuần vì mưu sinh—từ một y tá tận tâm chăm sóc sức khỏe, một đầu bếp sáng tạo nghệ thuật ẩm thực, cho đến một luật sư bảo vệ công lý."}, {"en": "Furthermore, multilingualism opens unprecedented doors.", "vi": "Hơn thế nữa, khả năng đa ngôn ngữ mở ra những cánh cửa chưa từng có."}, {"en": "While mastering English, Spanish, Hindi, or languages from China may seem hard, learning to understand diverse perspectives enriches human relationships.", "vi": "Dù việc thành thạo tiếng Anh, tiếng Tây Ban Nha, tiếng Hindi hay các ngôn ngữ từ Trung Quốc có vẻ khó khăn, việc học cách thấu hiểu những góc nhìn đa dạng sẽ làm giàu thêm các mối quan hệ con người."}, {"en": "Each dialogue with a friend, cousin, or teacher reminds us that effective communication builds lasting empathy across borders.", "vi": "Mỗi cuộc đối thoại với một người bạn, anh em họ hay thầy cô giáo đều nhắc nhở chúng ta rằng sự giao tiếp hiệu quả sẽ kiến tạo nên lòng thấu cảm bền vững xuyên biên giới."}];
         let currentRate = 0.8;
         let selectedVoice = null;
+        let currentMainView = 'reader';
         const activeUtterances = new Set();
         let currentActiveSideWord = null;
+
+        function switchMainView(view) {
+            currentMainView = view;
+            const btnReader = document.getElementById('navModeReader');
+            const btnPractice = document.getElementById('navModePractice');
+            const readerEl = document.getElementById('readerContent');
+            const practiceEl = document.getElementById('practiceContainer');
+
+            if (view === 'practice') {
+                if (btnReader) btnReader.classList.remove('active');
+                if (btnPractice) btnPractice.classList.add('active');
+                if (practiceEl) {
+                    practiceEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        const inp = document.getElementById('spellingInput');
+                        if (inp) inp.focus();
+                    }, 250);
+                }
+            } else {
+                if (btnReader) btnReader.classList.add('active');
+                if (btnPractice) btnPractice.classList.remove('active');
+                if (readerEl) {
+                    readerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
 
         // Current lookup selection state
         let currentSelectionWord = "";
@@ -3477,6 +3698,9 @@
                                 <div class="progress-bar-fill" id="spellingProgressBar"></div>
                             </div>
                         </div>
+                        <div class="spelling-media-card" id="spellingMediaWrap">
+                            <img id="spellingImage" src="" alt="Minh hoạ từ vựng" loading="lazy">
+                        </div>
                         <div class="spelling-prompt-area">
                             <div class="spelling-audio-row">
                                 <button class="spelling-audio-btn" id="btnPlaySentenceAudio" onclick="playCurrentSentenceAudio()" title="Nghe toàn bộ câu ngữ cảnh hoàn chỉnh">
@@ -3526,6 +3750,13 @@
             if (counterEl) counterEl.textContent = `Từ ${spellingIndex + 1} / ${words.length}`;
             if (progressEl) progressEl.style.width = `${((spellingIndex + 1) / words.length) * 100}%`;
             
+            const imgEl = document.getElementById('spellingImage');
+            if (imgEl && curWord) {
+                const cleanW = curWord.word.trim().toLowerCase();
+                imgEl.src = (typeof VOCAB_IMAGES !== 'undefined' && VOCAB_IMAGES[cleanW]) ? VOCAB_IMAGES[cleanW] : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=700&auto=format&fit=crop&q=80';
+                imgEl.alt = curWord.word;
+            }
+
             const hintEl = document.getElementById('spellingHintTag');
             if (hintEl) {
                 const posText = curWord.pos ? `[${curWord.pos}] • ` : '';
@@ -3544,6 +3775,9 @@
                 inputEl.value = '';
                 inputEl.className = 'spelling-input';
                 inputEl.placeholder = 'Gõ từ tiếng Anh bạn nghe được...';
+                setTimeout(() => {
+                    inputEl.focus();
+                }, 60);
             }
             if (fbEl) {
                 fbEl.style.display = 'none';
@@ -3585,15 +3819,18 @@
                 speakText(curWord.word);
                 setTimeout(() => {
                     nextSpellingWord();
-                }, 1200);
+                }, 1000);
             } else {
                 isSpellingWaitingRetype = true;
-                inputEl.className = 'spelling-input incorrect';
+                inputEl.className = 'spelling-input incorrect shake';
                 fbEl.className = 'spelling-feedback error';
                 fbEl.innerHTML = `❌ Chưa chính xác. Đáp án đúng: <strong style="font-size:1.1em;text-decoration:underline;">${curWord.word}</strong>.<br><span style="font-size:0.86rem;margin-top:4px;display:inline-block;">👉 Hãy gõ lại từ <strong>${curWord.word}</strong> vào ô để ghi nhớ mặt chữ!</span>`;
                 inputEl.value = '';
                 inputEl.placeholder = `Gõ lại "${curWord.word}" vào đây...`;
-                inputEl.focus();
+                setTimeout(() => {
+                    inputEl.classList.remove('shake');
+                    inputEl.focus();
+                }, 350);
             }
         }
 
@@ -3697,6 +3934,9 @@
                         </div>
                     </div>
                     <div class="flashcard-front" id="flashcardFront" onclick="flipAnkiCard(true)" style="cursor:pointer;">
+                        <div class="flashcard-media-card" id="ankiMediaWrap">
+                            <img id="ankiImageFront" src="" alt="Minh hoạ từ vựng" loading="lazy">
+                        </div>
                         <div class="flashcard-pos" id="ankiPosFront"></div>
                         <div class="flashcard-audio-wrap">
                             <button class="btn-speak-main" onclick="event.stopPropagation(); playCurrentAnkiAudio()">
@@ -3739,6 +3979,13 @@
             if (counterEl) counterEl.textContent = `Thẻ ${ankiIndex + 1} / ${words.length}`;
             if (progressEl) progressEl.style.width = `${((ankiIndex + 1) / words.length) * 100}%`;
             
+            const ankiImg = document.getElementById('ankiImageFront');
+            if (ankiImg && curWord) {
+                const cleanW = curWord.word.trim().toLowerCase();
+                ankiImg.src = (typeof VOCAB_IMAGES !== 'undefined' && VOCAB_IMAGES[cleanW]) ? VOCAB_IMAGES[cleanW] : 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=700&auto=format&fit=crop&q=80';
+                ankiImg.alt = curWord.word;
+            }
+
             document.getElementById('ankiPosFront').textContent = curWord.pos ? `[${curWord.pos}]` : '[VOCA]';
             document.getElementById('ankiSentenceFront').textContent = `"${getClozeSentenceForWord(curWord)}"`;
             
@@ -3918,6 +4165,20 @@
             function onScroll() {
                 const scrollY = window.scrollY || window.pageYOffset;
                 const triggerPos = scrollY + 160;
+
+                const practiceSec = document.getElementById('practiceContainer');
+                const navModeR = document.getElementById('navModeReader');
+                const navModeP = document.getElementById('navModePractice');
+                if (practiceSec && navModeR && navModeP) {
+                    const pTop = practiceSec.offsetTop - 220;
+                    if (scrollY >= pTop) {
+                        navModeP.classList.add('active');
+                        navModeR.classList.remove('active');
+                    } else {
+                        navModeR.classList.add('active');
+                        navModeP.classList.remove('active');
+                    }
+                }
 
                 let activeFound = false;
                 for (let i = sections.length - 1; i >= 0; i--) {
